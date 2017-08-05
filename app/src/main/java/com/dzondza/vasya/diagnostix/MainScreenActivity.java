@@ -165,6 +165,12 @@ public class MainScreenActivity extends AppCompatActivity
             case R.id.nav_directories:
                 fragment = new DirectoriesFragment();
                 break;
+            case R.id.nav_share:
+                Intent intentShare = new Intent(Intent.ACTION_SEND);
+                intentShare.setType("text/plain");
+                intentShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_text));
+                intentShare = Intent.createChooser(intentShare, getString(R.string.app_name));
+                startActivity(intentShare);
         }
 
         transaction = getSupportFragmentManager().beginTransaction();
