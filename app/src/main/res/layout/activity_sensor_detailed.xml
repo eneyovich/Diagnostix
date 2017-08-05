@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- shows each sensor's data-->
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MyCardViewStyle"
+    android:layout_marginTop="25dp"
+    android:layout_marginBottom="53dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="5dp"
+    app:contentPadding="10dp">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/string_image"
+        android:src="@drawable/sensor_detailed_image"/>
+
+    <TextView
+        android:id="@+id/sensor_detailed_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:textColor="@color/colorPrimary"
+        android:paddingBottom="55dp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-smallcaps"/>
+
+</android.support.v7.widget.CardView>

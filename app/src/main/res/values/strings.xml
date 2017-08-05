@@ -1,0 +1,323 @@
+<resources>
+    <string name="app_name">Diagnostix</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="available">Available</string>
+    <string name="unavailable">Unavailable</string>
+    <string name="exists">Exists</string>
+    <string name="not_exists">Not Exists</string>
+    <string name="unknown">Unknown</string>
+    <string name="open">   OPEN</string>
+    <string name="option_unavailable">Option is Unavailable</string>
+    <string name="string_image">Image</string>
+
+
+    <string name="open_drawer">Open Navigation Drawer</string>
+    <string name="close_drawer">Close Navigation Drawer</string>
+
+
+    <!-- drawerlayout left menu-->
+    <string-array name="drawer_menu">
+        <item>System</item>
+        <item>Soc CPU</item>
+        <item>Display</item>
+        <item>Network</item>
+        <item>Android</item>
+        <item>Battery</item>
+        <item>Camera</item>
+        <item>Sensors</item>
+        <item>Directories</item>
+    </string-array>
+
+
+    <!-- System strings -->
+
+    <string name="system_cores">CPU Cores</string>
+    <string name="system_instruction_set">Instruction Set</string>
+    <string name="system_clock_speed">Clock Speed</string>
+    <string name="system_os_architect">OS Architecture</string>
+    <string name="system_kernel">Kernel</string>
+    <string name="system_vm_location">VM location</string>
+    <string name="system_jni_libraries">JNI libraries</string>
+    <string name="system_vm_libraries">VM libraries</string>
+    <string name="system_virtual_machine">Virtual Machine</string>
+    <string name="system_bootloader">Bootloader</string>
+    <string name="system_host">Host</string>
+
+
+    <!--  Battery strings  -->
+
+    <!--Battery descriptions-->
+    <string name="battery_saver_settings">BATTERY SAVER \n SETTINGS</string>
+    <string name="battery_optimization_settings">BATTERY OPTIMIZATION \n SETTINGS\n</string>
+    <string name="battery_power_source">Power Source</string>
+    <string name="battery_level">Level</string>
+    <string name="battery_status">Status</string>
+    <string name="battery_health">Health</string>
+    <string name="battery_technology">Technology</string>
+    <string name="battery_temperature_battery">Temperature</string>
+    <string name="battery_voltage">Voltage</string>
+    <string name="battery_capacity">Capacity</string>
+
+
+    <!--Battery source-->
+    <string name="battery_ac_source">AC source</string>
+    <string name="battery_usb_source">USB source</string>
+    <string name="battery_wireless_source">WIRELESS source</string>
+    <string name="battery_source_battery">BATTERY source</string>
+
+    <!--Battery status-->
+    <string name="battery_discharging">Discharging</string>
+    <string name="battery_charging">Charging</string>
+    <string name="battery_full">Battery Full</string>
+
+    <!--Battery health-->
+    <string name="battery_health_cold">Cold</string>
+    <string name="battery_health_dead">Dead</string>
+    <string name="battery_health_good">Good</string>
+    <string name="battery_health_overheat">Overheat</string>
+    <string name="battery_health_over_voltage">Over Voltage</string>
+
+
+    <!--  Display strings  -->
+
+    <!--Display descriptions-->
+    <string name="display_screen_settings">SCREEN SETTINGS</string>
+    <string name="resolution">Resolution</string>
+    <string name="display_screen_diagonal">Screen Diagonal</string>
+    <string name="display_technology">Technology</string>
+    <string name="display_pixel_density">Pixel Density</string>
+    <string name="display_xdpi_ydpi">xdpi/ydpi</string>
+    <string name="display_orientation">Default Orientation</string>
+    <string name="display_type">Type</string>
+    <string name="display_rate">Display Rate</string>
+    <string name="display_opengl_version">OpenGL ES Version</string>
+
+    <!--Display orientations-->
+    <string name="display_orientation_portrait">Portrait</string>
+    <string name="display_orientation_landscape">Landscape</string>
+
+
+    <!--  AndroidFragment strings  -->
+
+    <!--Android descriptions-->
+    <string name="android_version_name">Version Name</string>
+    <string name="android_version_code">Version Code</string>
+    <string name="android_api_level">Api Level</string>
+    <string name="android_security_patch_level">Security Patch Level</string>
+    <string name="android_baseband">Baseband</string>
+    <string name="android_build_id">Build ID</string>
+    <string name="android_codename">Codename</string>
+    <string name="android_fingerprint">Fingerprint</string>
+    <string name="android_incremental">Incremental</string>
+    <string name="android_tags">Tags</string>
+    <string name="android_type">Type</string>
+    <!--Android versions-->
+    <string name="jelly_bean">JELLY BEAN</string>
+    <string name="kitkat">KITKAT</string>
+    <string name="lollipop">LOLLIPOP</string>
+    <string name="marshmallow">MARSHMALLOW</string>
+    <string name="nougat">NOUGAT</string>
+    <string name="oreo">OREO</string>
+
+
+    <!-- Device strings -->
+
+    <!--Device descriptions-->
+    <string name="device_model">Device Model</string>
+    <string name="device_manufacturer">Manufacturer</string>
+    <string name="device_model_detal">Model</string>
+    <string name="device_brand">Brand</string>
+    <string name="device_board">Board</string>
+    <string name="device_device">Device</string>
+    <string name="device_hardware">Hardware</string>
+    <string name="device_product">Product</string>
+    <string name="device_serial">Serial</string>
+
+    <string name="device_total_ram">Total Ram</string>
+    <string name="device_available_ram">Available Ram</string>
+    <string name="device_internal_total_space">Internal Storage Total Space</string>
+    <string name="device_internal_free_space">Internal Storage Free Space</string>
+    <string name="internal_storage_settings">INTERNAL STORAGE SETTINGS</string>
+
+
+
+
+    <!-- Directories strings -->
+
+    <!--directories descriptions-->
+    <string name="directory_data">Data</string>
+    <string name="directory_cache">Cache</string>
+    <string name="directory_root">Root</string>
+    <string name="directory_primary_storage">Primary Storage</string>
+    <string name="directory_dcim">DCIM</string>
+    <string name="directory_alarms">Alarms</string>
+    <string name="directory_documents">Documents</string>
+    <string name="directory_downloads">Downloads</string>
+    <string name="directory_movies">Movies</string>
+    <string name="directory_music">Music</string>
+    <string name="directory_notifications">Notifications</string>
+    <string name="directory_pictures">Pictures</string>
+    <string name="directory_podcasts">Podcasts</string>
+    <string name="directory_ringtones">Ringtones</string>
+    <string name="directory_storage_state">Primary Storage \nMedia State</string>
+
+
+    <!-- Network strings -->
+
+    <!--Network descriptions-->
+    <string name="network_device_call_state">Device Call State</string>
+    <string name="network_data_connection_activity">Data Connection Activity</string>
+    <string name="network_connection_state">Connection State</string>
+    <string name="network_iso_country_code">ISO Country Code</string>
+    <string name="network_operator_name">Operator Name</string>
+    <string name="network_operator_numeric_code">Operator Code</string>
+    <string name="network_type">Network Type</string>
+    <string name="network_sim_slots">SIM Slots</string>
+    <string name="network_type_radio">Radio Type</string>
+    <string name="network_sim_providers_country_code">SIM Provider\'s Country Code</string>
+    <string name="network_sim_state">SIM State</string>
+    <string name="network_roaming">Roaming</string>
+
+    <!--Device call state-->
+    <string name="network_new_call_arrived">New Call Arrived</string>
+    <string name="network_call_dialing_active_hold">At Least One Call is Dialing, Active, or On Hold</string>
+    <string name="network_no_activity">No Activity</string>
+
+    <!--Data Connection Activity-->
+    <string name="network_no_traffic">No Traffic</string>
+    <string name="network_active_physical_link_down">Active, But Physical Link is Down</string>
+    <string name="network_receiving_ip_ppp">Receiving IP PPP Traffic</string>
+    <string name="network_sending_receiving_ip_ppp">Sending and Receiving IP PPP Traffic</string>
+    <string name="network_sending_ip_ppp">Sending IP PPP Traffic</string>
+
+    <!-- data connection state -->
+    <string name="network_disconnected_traffic_not_available">Disconnected</string>
+    <string name="network_setting_up_data_connection">Setting Up Data Connection</string>
+    <string name="network_connected_traffic_should_be_available">Connected. IP Traffic Should be Available</string>
+    <string name="network_suspended_connection_up_traffic_temporarily_unavailable">Suspended. Connection is Up, but IP Traffic is Temporarily Unavailable</string>
+
+    <!--network type-->
+    <string name="network_2g">2G</string>
+    <string name="network_3g">3G</string>
+    <string name="network_4g">4G</string>
+
+    <!--device phone radio type-->
+    <string name="network_no_phone_radio">No Phone Radio</string>
+    <string name="network_gsm">GSM</string>
+    <string name="network_cdma">CDMA</string>
+    <string name="network_via_sip">via SIP</string>
+
+    <!--default SIM card's state-->
+    <string name="network_no_sim_card_available">No SIM Card is Available</string>
+    <string name="network_locked_requires_sim_pin_unlock">Locked: Requires User\'s SIM PIN to Unlock</string>
+    <string name="network_locked_requires_sim_puk_unlock">Locked: Requires User\'s SIM PUK to Unlock</string>
+    <string name="network_requires_network_pin_unlock">Requires Network PIN to Unlock</string>
+    <string name="network_sim_card_ready">Ready</string>
+    <string name="network_sim_card_not_ready">NOT READY</string>
+    <string name="network_sim_card_error_permanently_disabled">SIM Card Error, Permanently Disabled</string>
+    <string name="network_sim_card_error_present_faulty">SIM Card Error, Present But Faulty</string>
+    <string name="network_sim_card_restricted_present_not_usable">SIM Card Restricted, Present But Not Usable</string>
+
+    <!--wifi descriptions-->
+    <string name="wifi_network_state_information">Network State Information</string>
+    <string name="wifi_network_type">Network Type</string>
+    <string name="wifi_connectivity">Connectivity</string>
+    <string name="wifi_connection_status">Connection Status</string>
+    <string name="wifi_BSSID">BSSID</string>
+    <string name="wifi_SSID">SSID</string>
+    <string name="wifi_ip_address">IP Address</string>
+    <string name="wifi_link_speed">Link Speed</string>
+    <string name="wifi_mac_address">MAC Address</string>
+    <string name="wifi_network_id">Network Id</string>
+    <string name="wifi_signal_strength">Signal Strength</string>
+    <string name="wifi_dns1">DNS1</string>
+    <string name="wifi_dns2">DNS2</string>
+    <string name="wifi_netmask">Netmask</string>
+    <string name="wifi_state">WI-FI State</string>
+
+    <!--wifi solutions-->
+    <string name="wifi_connected">Connected</string>
+    <string name="wifi_not_connected">Not Connected</string>
+    <string name="wifi_enabled">Wi-Fi is enabled</string>
+    <string name="wifi_disabled">Wi-Fi is disabled</string>
+
+
+    <!-- Cameras strings -->
+
+    <!-- Cameras descriptions -->
+    <string name="camera_rear_camera">REAR-FACING CAMERA</string>
+    <string name="camera_front_camera">FRONT-FACING CAMERA</string>
+    <string name="camera_characteristics">CHARACTERISTICS</string>
+    <string name="camera_max_digit_zoom">Max Digital Zoom</string>
+    <string name="camera_awb_metering_areas">Auto-White Balance Metering Areas</string>
+    <string name="camera_ae_metering_areas">Auto-Exposure Metering Areas</string>
+    <string name="camera_af_metering_areas">Auto-Focus Metering Areas</string>
+    <string name="camera_flash_unit">Has Flash Unit</string>
+    <string name="camera_crop_type">Crop Type</string>
+    <string name="camera_sensor_pixel_array_size">Sensor Pixel Array\'s Physical Size</string>
+    <string name="camera_timestamps_source">Timestamps\' Source</string>
+
+
+    <string name="camera_color_effect">Color Effect</string>
+    <string name="camera_flash_mode">Flash Mode</string>
+    <string name="camera_focal_length">Focal Length</string>
+    <string name="camera_focus_mode">Focus Mode</string>
+    <string name="camera_horizontal_angle">Horizontal Angle</string>
+    <string name="camera_vertical_angle">Vertical Angle</string>
+    <string name="camera_jpeg_picture_quality">JPEG Picture Quality</string>
+    <string name="camera_thumbnail_picture_size">Thumbnail Picture Size</string>
+    <string name="camera_max_exposure_compensation">Max Exposure Compensation Index</string>
+    <string name="camera_min_exposure_compensation">Min Exposure Compensation Index</string>
+    <string name="camera_supported_detected_faces">Supported Detected Faces</string>
+    <string name="camera_supported_focus_areas">Supported Focus Areas</string>
+    <string name="camera_supported_metering_areas">Supported Metering Areas</string>
+    <string name="camera_max_zoom_value">Max Zoom Value</string>
+    <string name="camera_image_format">Image Format</string>
+    <string name="camera_image_dimension">Image Dimension</string>
+    <string name="camera_video_dimension">Video Dimension</string>
+    <string name="camera_scene_mode">Scene Mode</string>
+    <string name="camera_video_stabilization">Video Stabilization</string>
+    <string name="camera_white_balance">White Balance</string>
+
+    <!-- Cameras solutions -->
+    <string name="camera_supported">Supported</string>
+    <string name="camera_not_supported">Not Supported</string>
+    <string name="camera_present">Present</string>
+    <string name="camera_not_present">Not Present</string>
+    <string name="camera_rgba">RGBA</string>
+    <string name="camera_rgb">RGB</string>
+    <string name="camera_jpeg">JPEG</string>
+    <string name="camera_raw">RAW</string>
+    <string name="camera_centered">Centered</string>
+    <string name="camera_arbitrarily_chosen">Arbitrarily Chosen</string>
+    <string name="camera_real_time">Real Time</string>
+
+
+    <!-- Menu strings -->
+
+    <!--Main menu-->
+    <string name="menu_developer">Developer</string>
+    <string name="menu_accounts">Accounts</string>
+    <string name="menu_security">Security</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_sound">Sound</string>
+    <string name="menu_exit">Exit</string>
+
+    <!--Drawer menu-->
+    <string name="drawer_system">System</string>
+    <string name="drawer_device">Device</string>
+    <string name="drawer_applications">Applications</string>
+    <string name="drawer_display">Display</string>
+    <string name="drawer_network">Network</string>
+    <string name="drawer_android">Android</string>
+    <string name="drawer_battery">Battery</string>
+    <string name="drawer_camera">Camera</string>
+    <string name="drawer_sensors">Sensors</string>
+    <string name="drawer_directories">Directories</string>
+    <string name="drawer_communicate">Communicate</string>
+    <string name="drawer_share">Share</string>
+
+
+</resources>

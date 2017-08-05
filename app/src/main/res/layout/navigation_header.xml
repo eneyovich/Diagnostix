@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NavigationView Header in DrawerLayout -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="bottom"
+    android:background="@drawable/header_background_image">
+
+    <ImageView
+        android:layout_width="99dp"
+        android:layout_height="99dp"
+        android:paddingTop="21dp"
+        android:contentDescription="@string/string_image"
+        app:srcCompat="@drawable/phone4"/>
+
+    <TextView
+        android:id="@+id/header_textView_upper"
+        style="@style/MyNavigationHeaderTextViewStyle"
+        android:paddingTop="14dp"/>
+
+    <TextView
+        android:id="@+id/header_textView_lower"
+        style="@style/MyNavigationHeaderTextViewStyle"/>
+
+</LinearLayout>
