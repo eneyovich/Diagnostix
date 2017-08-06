@@ -11,8 +11,9 @@
     <string name="open">   OPEN</string>
     <string name="option_unavailable">Option is Unavailable</string>
     <string name="string_image">Image</string>
-    <string name="share_text">Please, download Diagnostix app from
-    Google Play to get all information about your device</string>
+    <string name="share_text">Please, enjoy Diagnostix app from
+    Google Play to get all information about your device -
+    https://play.google.com/store/apps/details?id=com.dzondza.vasya.diagnostix</string>
 
 
     <string name="open_drawer">Open Navigation Drawer</string>
