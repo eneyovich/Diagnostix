@@ -5,43 +5,43 @@
            android:checkableBehavior="single">
         <item
             android:id="@+id/nav_system"
-            android:icon="@drawable/ic_launcher_android"
+            android:icon="@drawable/drawable_nav_system"
             android:title="@string/drawer_system"/>
         <item
             android:id="@+id/nav_device"
-            android:icon="@drawable/perm_group_system_tools"
+            android:icon="@drawable/drawable_nav_device"
             android:title="@string/drawer_device"/>
         <item
             android:id="@+id/nav_installed_app"
-            android:icon="@drawable/ic_menu_myplaces"
+            android:icon="@drawable/drawable_nav_installed_apps"
             android:title="@string/drawer_applications"/>
         <item
             android:id="@+id/nav_display"
-            android:icon="@drawable/perm_group_display"
+            android:icon="@drawable/drawable_nav_display"
             android:title="@string/drawer_display"/>
         <item
             android:id="@+id/nav_network"
-            android:icon="@drawable/perm_group_network"
+            android:icon="@drawable/drawable_nav_network"
             android:title="@string/drawer_network"/>
         <item
             android:id="@+id/nav_android"
-            android:icon="@drawable/emo_im_tongue_sticking_out"
+            android:icon="@drawable/drawable_nav_android"
             android:title="@string/drawer_android"/>
         <item
             android:id="@+id/nav_battery"
-            android:icon="@drawable/perm_group_affects_battery"
+            android:icon="@drawable/drawable_nav_battery"
             android:title="@string/drawer_battery"/>
         <item
             android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/drawable_nav_camera"
             android:title="@string/drawer_camera"/>
         <item
             android:id="@+id/nav_sensors"
-            android:icon="@drawable/ic_menu_mylocation"
+            android:icon="@drawable/drawable_nav_sensors"
             android:title="@string/drawer_sensors"/>
         <item
             android:id="@+id/nav_directories"
-            android:icon="@drawable/ic_menu_archive"
+            android:icon="@drawable/drawable_nav_directories"
             android:title="@string/drawer_directories"/>
     </group>
 
@@ -49,7 +49,7 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share_holo_light"
+                android:icon="@drawable/drawable_nav_share"
                 android:title="@string/drawer_share"/>
         </menu>
     </item>

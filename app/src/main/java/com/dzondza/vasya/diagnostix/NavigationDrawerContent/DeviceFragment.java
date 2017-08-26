@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -30,7 +30,7 @@ public class DeviceFragment extends BaseDetailedFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        //activates recyclerView
         initializeRecyclerView(view);
 
 
@@ -95,12 +95,12 @@ public class DeviceFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(ramAvailableDescript, ramAvailable));
 
 
-        //Internal storage free space in MB
+        //Internal storage's free space in MB
         String freeInternalSpace = getString(R.string.device_internal_free_space);
         recyclerViewLine.add(new RecyclerItemsData(freeInternalSpace, freeInternalSpace().concat(" Mb")));
 
 
-        //Internal storage total space in MB
+        //Internal storage's total space in MB
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             String totalInternalSpace = getString(R.string.device_internal_total_space);
             String totalInternalSpaceSolution = new StringBuilder()
@@ -112,13 +112,13 @@ public class DeviceFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(getString(R.string.internal_storage_settings), getString(R.string.open)));
 
 
-        //toolbar title
         getActivity().setTitle(R.string.drawer_device);
 
         return view;
     }
 
 
+    //gets internal storage's free space in MB
     private String freeInternalSpace() {
         long blockSize, availableBlocks;
 

@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -18,14 +18,14 @@ import java.util.List;
 
 
 /**
- * contains information about system, cpu
+ * contains information about system, cpu, etc.
  */
 
 public class SystemFragment extends BaseDetailedFragment {
-    private Handler handler = new Handler();
-    private Runnable coreFrequencyRunnable;
-    private int cpuNumber;
-    private String supportedAbis;
+    private Handler mHandler = new Handler();
+    private Runnable mCoreFrequencyRunnable;
+    private int mCpuNumber;
+    private String mSupportedAbis;
 
 
     @Nullable
@@ -33,30 +33,30 @@ public class SystemFragment extends BaseDetailedFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
+        //activates recyclerView
         initializeRecyclerView(view);
 
-
         Runtime runtime = Runtime.getRuntime();
-        cpuNumber = runtime.availableProcessors();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_cores), String.valueOf(cpuNumber)));
+        mCpuNumber = runtime.availableProcessors();
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_cores), String.valueOf(mCpuNumber)));
 
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            supportedAbis = new StringBuilder(Build.CPU_ABI).append(" ").append(Build.CPU_ABI2).toString();
+            mSupportedAbis = new StringBuilder(Build.CPU_ABI).append(" ").append(Build.CPU_ABI2).toString();
         } else {
             for (String s : Build.SUPPORTED_ABIS) {
-                    supportedAbis += s + " ";
+                    mSupportedAbis += s + " ";
             }
         }
-        supportedAbis = supportedAbis.replaceAll("null","");
-        recyclerViewLine.add(new RecyclerItemsData("Instruction Set", supportedAbis));
+        mSupportedAbis = mSupportedAbis.replaceAll("null","");
+        recyclerViewLine.add(new RecyclerItemsData("Instruction Set", mSupportedAbis));
 
 
 
-        List<Integer> maxCpuFreqList = new ArrayList<>(cpuNumber);
+        List<Integer> maxCpuFreqList = new ArrayList<>(mCpuNumber);
 
-        for (int i = 0; i < cpuNumber; i++) {
-            //each core frequency
+        for (int i = 0; i < mCpuNumber; i++) {
+            //gets each core frequency
             int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
             "/cpufreq/scaling_cur_freq") / 1000;
             recyclerViewLine.add(2 + i, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
@@ -115,7 +115,6 @@ public class SystemFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(host, Build.HOST));
 
 
-        //toolbar title
         getActivity().setTitle(R.string.drawer_system);
 
         return view;
@@ -126,22 +125,22 @@ public class SystemFragment extends BaseDetailedFragment {
     public void onResume() {
         super.onResume();
 
-        coreFrequencyRunnable = new Runnable() {
+        mCoreFrequencyRunnable = new Runnable() {
             @Override
             public void run() {
 
-                // refresh each core frequency
-                for (int i = 0; i < cpuNumber; i++) {
+                //refreshes each core's frequency
+                for (int i = 0; i < mCpuNumber; i++) {
                     int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
                             "/cpufreq/scaling_cur_freq") / 1000;
                     recyclerViewLine.set(i + 2, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
                             .concat(" MHz")));
                     adapter.notifyDataSetChanged();
                 }
-                handler.postDelayed(this, 5);
+                mHandler.postDelayed(this, 5);
             }
         };
-        handler.postDelayed(coreFrequencyRunnable, 100);
+        mHandler.postDelayed(mCoreFrequencyRunnable, 100);
     }
 
 
@@ -163,7 +162,7 @@ public class SystemFragment extends BaseDetailedFragment {
 
     @Override
     public void onPause() {
-        handler.removeCallbacks(coreFrequencyRunnable);
+        mHandler.removeCallbacks(mCoreFrequencyRunnable);
         super.onPause();
     }
 }

@@ -2,6 +2,7 @@ package com.dzondza.vasya.diagnostix;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,35 +13,34 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import com.dzondza.vasya.diagnostix.MainContent.AndroidFragment;
-import com.dzondza.vasya.diagnostix.MainContent.BatteryFragment;
-import com.dzondza.vasya.diagnostix.MainContent.CamerasFragment;
-import com.dzondza.vasya.diagnostix.MainContent.DirectoriesFragment;
-import com.dzondza.vasya.diagnostix.MainContent.DisplayFragment;
-import com.dzondza.vasya.diagnostix.MainContent.InstalledAppsFragment;
-import com.dzondza.vasya.diagnostix.MainContent.NetworkFragment;
-import com.dzondza.vasya.diagnostix.MainContent.SensorsFragment;
-import com.dzondza.vasya.diagnostix.MainContent.SystemFragment;
-import com.dzondza.vasya.diagnostix.MainContent.DeviceFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.AndroidFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.BatteryFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.CamerasFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.DirectoriesFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.DisplayFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.InstalledAppsFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.NetworkFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.SensorsFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.SystemFragment;
+import com.dzondza.vasya.diagnostix.NavigationDrawerContent.DeviceFragment;
 
 
 /**
- * Program main activity:
- * creates and initializes toolbar, drawerlayout
+ * Program main activity
+ * creates and initializes toolbar, DrawerLayout
  */
 
 public class MainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment fragment;
-    private DrawerLayout drawerLayout;
-    private FragmentTransaction transaction;
+    private Fragment mFragment;
+    private DrawerLayout mDrawerLayout;
+    private FragmentTransaction mTransaction;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,11 +50,11 @@ public class MainScreenActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar,
                 R.string.open_drawer, R.string.close_drawer);
         toggle.setDrawerIndicatorEnabled(true);
-        drawerLayout.addDrawerListener(toggle);
+        mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -69,8 +69,8 @@ public class MainScreenActivity extends AppCompatActivity
         headerLower.setText(Build.MODEL);
 
 
-        transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.activity_main_fragment_container, new DeviceFragment()).commit();
+        mTransaction = getSupportFragmentManager().beginTransaction();
+        mTransaction.add(R.id.activity_main_fragment_container, new DeviceFragment()).commit();
 
 
         onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_device));
@@ -80,8 +80,8 @@ public class MainScreenActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
 
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -90,7 +90,7 @@ public class MainScreenActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -133,37 +133,37 @@ public class MainScreenActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-       // selectDrawerItem(item.getItemId());
+       // selects drawerLayout's item
         switch (item.getItemId()) {
             case R.id.nav_system:
-                fragment = new SystemFragment();
+                mFragment = new SystemFragment();
                 break;
             case R.id.nav_device:
-                fragment = new DeviceFragment();
+                mFragment = new DeviceFragment();
                 break;
             case R.id.nav_installed_app:
-                fragment = new InstalledAppsFragment();
+                mFragment = new InstalledAppsFragment();
                 break;
             case R.id.nav_display:
-                fragment = new DisplayFragment();
+                mFragment = new DisplayFragment();
                 break;
             case R.id.nav_network:
-                fragment = new NetworkFragment();
+                mFragment = new NetworkFragment();
                 break;
             case R.id.nav_android:
-                fragment = new AndroidFragment();
+                mFragment = new AndroidFragment();
                 break;
             case R.id.nav_battery:
-                fragment = new BatteryFragment();
+                mFragment = new BatteryFragment();
                 break;
             case R.id.nav_camera:
-                fragment = new CamerasFragment();
+                mFragment = new CamerasFragment();
                 break;
             case R.id.nav_sensors:
-                fragment = new SensorsFragment();
+                mFragment = new SensorsFragment();
                 break;
             case R.id.nav_directories:
-                fragment = new DirectoriesFragment();
+                mFragment = new DirectoriesFragment();
                 break;
             case R.id.nav_share:
                 Intent intentShare = new Intent(Intent.ACTION_SEND);
@@ -173,13 +173,13 @@ public class MainScreenActivity extends AppCompatActivity
                 startActivity(intentShare);
         }
 
-        transaction = getSupportFragmentManager().beginTransaction();
-        if (fragment != null) {
-            transaction.addToBackStack(null);
-            transaction.replace(R.id.activity_main_fragment_container, fragment).commit();
+        mTransaction = getSupportFragmentManager().beginTransaction();
+        if (mFragment != null) {
+            mTransaction.addToBackStack(null);
+            mTransaction.replace(R.id.activity_main_fragment_container, mFragment).commit();
         }
 
-        drawerLayout.closeDrawer(GravityCompat.START);
+        mDrawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }

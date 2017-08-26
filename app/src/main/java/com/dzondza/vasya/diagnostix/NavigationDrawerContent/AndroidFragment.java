@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ public class AndroidFragment extends BaseDetailedFragment {
 
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        // activates recyclerView
         initializeRecyclerView(view);
 
 
@@ -86,7 +86,6 @@ public class AndroidFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(type, Build.TYPE));
 
 
-        //toolbar title
         getActivity().setTitle(R.string.drawer_android);
 
         return view;

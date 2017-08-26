@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
@@ -6,11 +6,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
 import com.dzondza.vasya.diagnostix.R;
+import com.dzondza.vasya.diagnostix.RecyclerItemsData;
 import com.dzondza.vasya.diagnostix.RecyclerAdapter;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 /**
  * Base fragment, which contains similar information for all fragments
@@ -20,8 +22,8 @@ import java.util.List;
 public abstract class BaseDetailedFragment extends Fragment
         implements AdapterView.OnItemClickListener {
 
-    protected List<RecyclerItemsData> recyclerViewLine;
-    protected RecyclerAdapter adapter;
+    List<RecyclerItemsData> recyclerViewLine;
+    RecyclerAdapter adapter;
 
 
     protected void initializeRecyclerView(View view) {
@@ -33,7 +35,7 @@ public abstract class BaseDetailedFragment extends Fragment
         adapter = new RecyclerAdapter(recyclerViewLine, this);
         recyclerView.setAdapter(adapter);
 
-        //line between items in list
+        //adds line between items in list
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
                 layoutManager.getOrientation()));
 

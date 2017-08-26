@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.content.Context;
 import android.graphics.ImageFormat;
@@ -22,12 +22,12 @@ import java.util.List;
  */
 
 public class CamerasFragment extends BaseDetailedFragment {
-    private Camera camera;
-    private Camera.Parameters parameters;
+    private Camera mCamera;
+    private Camera.Parameters mParameters;
 
-    private String focalLengthDescript, focalLength;
-    private String SupportedFacesDescript, SupportedFaces;
-    private String maxZoomDescript, maxZoom;
+    private String mFocalLengthDescript, mFocalLength;
+    private String mSupportedFacesDescript, mSupportedFaces;
+    private String mMaxZoomDescript, mMaxZoom;
 
 
     @Nullable
@@ -35,7 +35,7 @@ public class CamerasFragment extends BaseDetailedFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        // activates recyclerView
         initializeRecyclerView(view);
 
 
@@ -57,14 +57,13 @@ public class CamerasFragment extends BaseDetailedFragment {
         }
 
 
-        //toolbar title
         getActivity().setTitle(R.string.drawer_camera);
 
         return view;
     }
 
 
-    // camera2 api params
+    // gets camera2 Api's parameters
     private void lollipopCameraParams(String camId, List<RecyclerItemsData>dataList) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -74,10 +73,10 @@ public class CamerasFragment extends BaseDetailedFragment {
             try {
                 CameraCharacteristics backCharacter = cameraManager.getCameraCharacteristics(camId);
 
-                focalLengthDescript= getString(R.string.camera_focal_length);
-                focalLength = String.valueOf(backCharacter.get
+                mFocalLengthDescript = getString(R.string.camera_focal_length);
+                mFocalLength = String.valueOf(backCharacter.get
                         (CameraCharacteristics.LENS_INFO_AVAILABLE_FOCAL_LENGTHS)[0]);
-                recyclerViewLine.add(new RecyclerItemsData(focalLengthDescript, focalLength));
+                recyclerViewLine.add(new RecyclerItemsData(mFocalLengthDescript, mFocalLength));
 
 
                 if ((backCharacter.get(CameraCharacteristics
@@ -113,10 +112,10 @@ public class CamerasFragment extends BaseDetailedFragment {
                 recyclerViewLine.add(new RecyclerItemsData(flashDescript, flashSolution));
 
 
-                maxZoomDescript = getString(R.string.camera_max_zoom_value);
-                maxZoom = String.valueOf(backCharacter.get
+                mMaxZoomDescript = getString(R.string.camera_max_zoom_value);
+                mMaxZoom = String.valueOf(backCharacter.get
                         (CameraCharacteristics.SCALER_AVAILABLE_MAX_DIGITAL_ZOOM));
-                recyclerViewLine.add(new RecyclerItemsData(maxZoomDescript, maxZoom));
+                recyclerViewLine.add(new RecyclerItemsData(mMaxZoomDescript, mMaxZoom));
 
 
                 String cropTypeDescript = getString(R.string.camera_crop_type);
@@ -163,10 +162,10 @@ public class CamerasFragment extends BaseDetailedFragment {
                 recyclerViewLine.add(new RecyclerItemsData(timestampsSourceDescript, timestampsSource));
 
 
-                SupportedFacesDescript = getString(R.string.camera_supported_detected_faces);
-                SupportedFaces = String.valueOf(backCharacter.get
+                mSupportedFacesDescript = getString(R.string.camera_supported_detected_faces);
+                mSupportedFaces = String.valueOf(backCharacter.get
                         (CameraCharacteristics.STATISTICS_INFO_MAX_FACE_COUNT));
-                recyclerViewLine.add(new RecyclerItemsData(SupportedFacesDescript, SupportedFaces));
+                recyclerViewLine.add(new RecyclerItemsData(mSupportedFacesDescript, mSupportedFaces));
 
 
             } catch (Exception e) {
@@ -175,89 +174,89 @@ public class CamerasFragment extends BaseDetailedFragment {
         }
     }
 
-    //camera api params(before lollipop)
+    //gets mCamera Api's parameters(for android versions before lollipop)
     private void oldCameraParams(int cameraId, List<RecyclerItemsData>dataList) {
         try {
-            if (camera == null) {
-                camera = Camera.open(cameraId);
-                parameters = camera.getParameters();
+            if (mCamera == null) {
+                mCamera = Camera.open(cameraId);
+                mParameters = mCamera.getParameters();
             }
 
             String colorEffect = getString(R.string.camera_color_effect);
-            recyclerViewLine.add(new RecyclerItemsData(colorEffect, parameters.getColorEffect()));
+            recyclerViewLine.add(new RecyclerItemsData(colorEffect, mParameters.getColorEffect()));
 
 
             String flashMode = getString(R.string.camera_flash_mode);
-            recyclerViewLine.add(new RecyclerItemsData(flashMode, parameters.getFlashMode()));
+            recyclerViewLine.add(new RecyclerItemsData(flashMode, mParameters.getFlashMode()));
 
 
-            focalLengthDescript = getString(R.string.camera_focal_length);
-            focalLength = String.valueOf(parameters.getFocalLength()).concat(" mm");
-            recyclerViewLine.add(new RecyclerItemsData(focalLengthDescript, focalLength));
+            mFocalLengthDescript = getString(R.string.camera_focal_length);
+            mFocalLength = String.valueOf(mParameters.getFocalLength()).concat(" mm");
+            recyclerViewLine.add(new RecyclerItemsData(mFocalLengthDescript, mFocalLength));
 
 
             String focusMode = getString(R.string.camera_focus_mode);
-            recyclerViewLine.add(new RecyclerItemsData(focusMode, parameters.getFocusMode()));
+            recyclerViewLine.add(new RecyclerItemsData(focusMode, mParameters.getFocusMode()));
 
 
             String horizAngleDescript = getString(R.string.camera_horizontal_angle);
-            String horizAngle = String.valueOf(parameters.getHorizontalViewAngle()).concat(" degrees");
+            String horizAngle = String.valueOf(mParameters.getHorizontalViewAngle()).concat(" degrees");
             recyclerViewLine.add(new RecyclerItemsData(horizAngleDescript, horizAngle));
 
 
             String verticAngleDescript = getString(R.string.camera_vertical_angle);
-            String verticAngle = String.valueOf(parameters.getVerticalViewAngle()).concat(" degrees");
+            String verticAngle = String.valueOf(mParameters.getVerticalViewAngle()).concat(" degrees");
             recyclerViewLine.add(new RecyclerItemsData(verticAngleDescript, verticAngle));
 
 
             String jpegQualityDescript = getString(R.string.camera_jpeg_picture_quality);
-            String jpegQuality = String.valueOf(parameters.getJpegQuality());
+            String jpegQuality = String.valueOf(mParameters.getJpegQuality());
             recyclerViewLine.add(new RecyclerItemsData(jpegQualityDescript, jpegQuality));
 
 
             String thumbnailSizeDescript = getString(R.string.camera_thumbnail_picture_size);
-            String thumbnailSize = "" + parameters.getJpegThumbnailSize().width + " x "
-                    + parameters.getJpegThumbnailSize().height;
+            String thumbnailSize = "" + mParameters.getJpegThumbnailSize().width + " x "
+                    + mParameters.getJpegThumbnailSize().height;
             recyclerViewLine.add(new RecyclerItemsData(thumbnailSizeDescript, thumbnailSize));
 
 
             String maxExposureDescript = getString(R.string.camera_max_exposure_compensation);
-            String maxExposure = String.valueOf(parameters.getMaxExposureCompensation());
+            String maxExposure = String.valueOf(mParameters.getMaxExposureCompensation());
             recyclerViewLine.add(new RecyclerItemsData(maxExposureDescript, maxExposure));
 
 
             String minExposureDescript = getString(R.string.camera_min_exposure_compensation);
-            String minExposure = String.valueOf(parameters.getMinExposureCompensation());
+            String minExposure = String.valueOf(mParameters.getMinExposureCompensation());
             recyclerViewLine.add(new RecyclerItemsData(minExposureDescript, minExposure));
 
 
-            SupportedFacesDescript = getString(R.string.camera_supported_detected_faces);
-            SupportedFaces = String.valueOf(parameters.getMaxNumDetectedFaces());
-            recyclerViewLine.add(new RecyclerItemsData(SupportedFacesDescript, SupportedFaces));
+            mSupportedFacesDescript = getString(R.string.camera_supported_detected_faces);
+            mSupportedFaces = String.valueOf(mParameters.getMaxNumDetectedFaces());
+            recyclerViewLine.add(new RecyclerItemsData(mSupportedFacesDescript, mSupportedFaces));
 
 
             String focusAreasDescriptions = getString(R.string.camera_supported_focus_areas);
-            String focusAreas = String.valueOf(parameters.getMaxNumFocusAreas());
+            String focusAreas = String.valueOf(mParameters.getMaxNumFocusAreas());
             recyclerViewLine.add(new RecyclerItemsData(focusAreasDescriptions, focusAreas));
 
 
             String meteringAreasDescriptions = getString(R.string.camera_supported_metering_areas);
-            String meteringAreasSolutions = String.valueOf(parameters.getMaxNumMeteringAreas());
+            String meteringAreasSolutions = String.valueOf(mParameters.getMaxNumMeteringAreas());
             recyclerViewLine.add(new RecyclerItemsData(meteringAreasDescriptions, meteringAreasSolutions));
 
 
-            maxZoomDescript = getString(R.string.camera_max_zoom_value);
-            if (parameters.isZoomSupported()) {
-                maxZoom = String.valueOf(parameters.getMaxZoom());
+            mMaxZoomDescript = getString(R.string.camera_max_zoom_value);
+            if (mParameters.isZoomSupported()) {
+                mMaxZoom = String.valueOf(mParameters.getMaxZoom());
             } else {
-                maxZoom = getString(R.string.camera_not_supported);
+                mMaxZoom = getString(R.string.camera_not_supported);
             }
-            recyclerViewLine.add(new RecyclerItemsData(maxZoomDescript, maxZoom));
+            recyclerViewLine.add(new RecyclerItemsData(mMaxZoomDescript, mMaxZoom));
 
 
             String imageFormatDescript = getString(R.string.camera_image_format);
             String imageFormat;
-            switch (parameters.getPictureFormat()) {
+            switch (mParameters.getPictureFormat()) {
                 case ImageFormat.RAW_PRIVATE:
                 case ImageFormat.RAW_SENSOR:
                 case ImageFormat.RAW12:
@@ -280,24 +279,24 @@ public class CamerasFragment extends BaseDetailedFragment {
 
 
             String imageDimensionDescript = getString(R.string.camera_image_dimension);
-            String imageDimension = "" + parameters.getPictureSize().width + " x "
-                    + parameters.getPictureSize().height;
+            String imageDimension = "" + mParameters.getPictureSize().width + " x "
+                    + mParameters.getPictureSize().height;
             recyclerViewLine.add(new RecyclerItemsData(imageDimensionDescript, imageDimension));
 
 
             String videoDimensionDescript = getString(R.string.camera_video_dimension);
-            String videoDimension = "" + parameters.getPreferredPreviewSizeForVideo().width + " x "
-                    + parameters.getPreferredPreviewSizeForVideo().height;
+            String videoDimension = "" + mParameters.getPreferredPreviewSizeForVideo().width + " x "
+                    + mParameters.getPreferredPreviewSizeForVideo().height;
             recyclerViewLine.add(new RecyclerItemsData(videoDimensionDescript, videoDimension));
 
 
             String sceneMode = getString(R.string.camera_scene_mode);
-            recyclerViewLine.add(new RecyclerItemsData(sceneMode, parameters.getSceneMode()));
+            recyclerViewLine.add(new RecyclerItemsData(sceneMode, mParameters.getSceneMode()));
 
 
             String videoStabilizatDescript = getString(R.string.camera_video_stabilization);
             String videoStabilizat;
-            if (parameters.isVideoStabilizationSupported()) {
+            if (mParameters.isVideoStabilizationSupported()) {
                 videoStabilizat = getString(R.string.camera_supported);
             } else
                 videoStabilizat = getString(R.string.camera_not_supported);
@@ -305,15 +304,15 @@ public class CamerasFragment extends BaseDetailedFragment {
 
 
             String whiteBalance = getString(R.string.camera_white_balance);
-            recyclerViewLine.add(new RecyclerItemsData(whiteBalance, parameters.getWhiteBalance()));
+            recyclerViewLine.add(new RecyclerItemsData(whiteBalance, mParameters.getWhiteBalance()));
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (camera != null) {
-                camera.release();
+            if (mCamera != null) {
+                mCamera.release();
             }
-            camera = null;
+            mCamera = null;
         }
     }
 }

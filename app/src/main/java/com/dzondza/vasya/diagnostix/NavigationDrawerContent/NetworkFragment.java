@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +20,7 @@ import com.dzondza.vasya.diagnostix.R;
 
 
 /**
- * containing network information for each device
+ * contains network information
  */
 
 public class NetworkFragment extends BaseDetailedFragment {
@@ -30,7 +30,7 @@ public class NetworkFragment extends BaseDetailedFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        // activates recyclerView
         initializeRecyclerView(view);
 
 
@@ -38,7 +38,7 @@ public class NetworkFragment extends BaseDetailedFragment {
                 getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
 
-        //Returns constant that represents the current state of all phone calls
+        //returns constant that represents the current state of all phone calls
         String callStateDescript = getString(R.string.network_device_call_state);
         String callState;
         switch (telephonyManager.getCallState()) {
@@ -153,7 +153,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(networkTypeDescript, networkTypeSolution));
 
 
-        //Returns the number of phones available.
+        //Returns the number of available phones
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             String simSlotsDescript = getString(R.string.network_sim_slots);
@@ -162,7 +162,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
 
 
-        //device phone radio type
+        //device's radio type
         String radioDescript = getString(R.string.network_type_radio);
         String radio;
         switch (telephonyManager.getPhoneType()) {
@@ -237,7 +237,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(roamingDescript, roaming));
 
 
-        //https://developer.android.com/reference/android/net/ConnectivityManager.html
+
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -276,7 +276,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(connectStatusDescript, connectStatus));
 
 
-        //https://developer.android.com/reference/android/net/wifi/WifiManager.html
+
         WifiManager wifiManager = (WifiManager)getActivity().getApplicationContext()
                 .getSystemService(Context.WIFI_SERVICE);
 
@@ -342,7 +342,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(wifiStateDescript, wifiState));
 
 
-        //toolbar title
+
         getActivity().setTitle(R.string.drawer_network);
 
         return view;

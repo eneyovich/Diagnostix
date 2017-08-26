@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -20,7 +20,7 @@ import com.dzondza.vasya.diagnostix.R;
 
 
 /**
- * contains information about display for each device
+ * contains information about display
  */
 
 public class DisplayFragment extends BaseDetailedFragment {
@@ -30,7 +30,7 @@ public class DisplayFragment extends BaseDetailedFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        //activates recyclerView
         initializeRecyclerView(view);
 
 
@@ -44,7 +44,7 @@ public class DisplayFragment extends BaseDetailedFragment {
         display.getRealMetrics(displayMetrics);
 
 
-        //screen resolution
+        //display's resolution
         int heightPixels = displayMetrics.heightPixels;
         int widthPixels = displayMetrics.widthPixels;
 
@@ -77,7 +77,7 @@ public class DisplayFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(technologyDescript, technology));
 
 
-        //screen diagonal in inches
+        //display's diagonal in inches
         double xInches = Math.pow(widthPixels/xdpi, 2);
         double yInches = Math.pow(heightPixels/ydpi, 2);
         double inches = Math.sqrt(xInches + yInches);
@@ -86,7 +86,7 @@ public class DisplayFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(diagonal, String.valueOf(screenInches)));
 
 
-        // default orientation
+        // default display's orientation
         String orientationDescript = getString(R.string.display_orientation);
         String orientation;
         int rotation = display.getRotation();
@@ -98,12 +98,12 @@ public class DisplayFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(orientationDescript, orientation));
 
 
-        //display name
+        //display's name
         String type = getString(R.string.display_type);
         recyclerViewLine.add(new RecyclerItemsData(type, display.getName()));
 
 
-        // rate of this display in FPS
+        // display's rate in FPS
         String rateDescript = getString(R.string.display_rate);
         String rate = String.valueOf(display.getRefreshRate()).concat(" FPS");
         recyclerViewLine.add(new RecyclerItemsData(rateDescript, rate));
@@ -118,7 +118,6 @@ public class DisplayFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(openGLVersion, configurationInfo.getGlEsVersion()));
 
 
-        //toolbar title
         getActivity().setTitle(R.string.drawer_display);
 
         return view;

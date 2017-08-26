@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/string_image"
-        android:src="@drawable/sensor_detailed_image"/>
+        android:src="@drawable/drawable_sensor_detailed"/>
 
     <TextView
         android:id="@+id/sensor_detailed_textview"

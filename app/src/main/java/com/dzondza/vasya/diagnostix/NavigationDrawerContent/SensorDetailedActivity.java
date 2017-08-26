@@ -1,26 +1,26 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 import com.dzondza.vasya.diagnostix.R;
 import java.util.List;
 
 
 /**
- * contains information about Each sensor
+ * contains information about each sensor
  */
 
 public class SensorDetailedActivity extends AppCompatActivity implements SensorEventListener {
-    private SensorManager sensorManager;
-    private int sensorType;
-    private TextView sensorTextView;
+    private SensorManager mSensorManager;
+    private int mSensorType;
+    private TextView mSensorTextView;
 
 
     @Override
@@ -28,26 +28,26 @@ public class SensorDetailedActivity extends AppCompatActivity implements SensorE
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_detailed);
 
-        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        List<Sensor> sensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
 
-        sensorType = getIntent().getIntExtra(SensorsFragment.SENSOR_TYPE_EXTRA_INTENT, 999);
+        mSensorType = getIntent().getIntExtra(SensorsFragment.SENSOR_TYPE_EXTRA_INTENT, 999);
 
-        sensorTextView = (TextView) findViewById(R.id.sensor_detailed_textview);
+        mSensorTextView = (TextView) findViewById(R.id.sensor_detailed_textview);
 
 
-        new SensorsFragment().registerAllSensors(this, sensors, sensorManager);
+        new SensorsFragment().registerAllSensors(this, sensors, mSensorManager);
     }
 
 
-    //sets sensor's value to sensorTextView
+    //sets sensor's value to mSensorTextView
     private void showSensorsValues(String valueType, Object... eventValues) {
         if (eventValues.length == 3) {
-            sensorTextView.setText(new StringBuilder("x = ").append(eventValues[0]).append(valueType)
+            mSensorTextView.setText(new StringBuilder("x = ").append(eventValues[0]).append(valueType)
                     .append("\ny = ").append(eventValues[1]).append(valueType)
                     .append("\nz = ").append(eventValues[2]).append(valueType).toString());
         } else if (eventValues.length == 1) {
-            sensorTextView.setText(new StringBuilder().append(eventValues[0]).append(valueType)
+            mSensorTextView.setText(new StringBuilder().append(eventValues[0]).append(valueType)
                     .toString());
         }
     }
@@ -58,7 +58,7 @@ public class SensorDetailedActivity extends AppCompatActivity implements SensorE
        Sensor sensor = sEvent.sensor;
 
         //sets values from sensors to textviews
-        if (sensor.getType() == sensorType) {
+        if (sensor.getType() == mSensorType) {
             switch (sensor.getType()) {
                 case Sensor.TYPE_ACCELEROMETER:
                 case Sensor.TYPE_ACCELEROMETER_UNCALIBRATED:
@@ -99,7 +99,7 @@ public class SensorDetailedActivity extends AppCompatActivity implements SensorE
                     showSensorsValues("", sEvent.values[0]);
                     break;
                 default:
-                    sensorTextView.setText(new StringBuilder("Power ").append(sensor.getPower())
+                    mSensorTextView.setText(new StringBuilder("Power ").append(sensor.getPower())
                         .append(" mA\nResolution ").append(sensor.getResolution())
                             .append(" lx\nMax Range ").append(sensor.getMaximumRange())
                             .append(" lx\nVersion ").append(sensor.getVersion()).toString());
@@ -114,6 +114,6 @@ public class SensorDetailedActivity extends AppCompatActivity implements SensorE
     @Override
     protected void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(this);
+        mSensorManager.unregisterListener(this);
     }
 }

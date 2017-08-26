@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.dzondza.vasya.diagnostix.R;
 
 
 /**
- * contains directories' information for each device
+ * contains directories' information from each device
  */
 
 public class DirectoriesFragment extends BaseDetailedFragment {
@@ -22,7 +22,7 @@ public class DirectoriesFragment extends BaseDetailedFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        // activates recyclerView
         initializeRecyclerView(view);
 
 
@@ -109,7 +109,6 @@ public class DirectoriesFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(storageState, Environment.getExternalStorageState()));
 
 
-        //toolbar title
         getActivity().setTitle(R.string.drawer_directories);
 
         return view;

@@ -1,15 +1,15 @@
 package com.dzondza.vasya.diagnostix;
 
 /**
- * model in MVC pattern
+ * data, which adds to recyclerView's item in list
  */
 
 public class RecyclerItemsData {
-    protected String description;
-    protected String solution;
+    String mDescription;
+    String mSolution;
 
     public RecyclerItemsData(String description, String solution) {
-        this.description = description;
-        this.solution = solution;
+        this.mDescription = description;
+        this.mSolution = solution;
     }
 }

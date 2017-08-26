@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import com.dzondza.vasya.diagnostix.R;
 
 public class BatteryFragment extends BaseDetailedFragment {
 
-    private Intent batteryIntent;
+    private Intent mBatteryIntent;
 
 
     @Override
@@ -30,12 +30,12 @@ public class BatteryFragment extends BaseDetailedFragment {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
 
-        // init recyclerView List
+        // activates recyclerView
         initializeRecyclerView(view);
 
 
         IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        batteryIntent = getActivity().registerReceiver(null, intentFilter);
+        mBatteryIntent = getActivity().registerReceiver(null, intentFilter);
 
 
         if (Build.VERSION.SDK_INT >= 22) {
@@ -54,7 +54,7 @@ public class BatteryFragment extends BaseDetailedFragment {
 
 
         String levelDescription = getString(R.string.battery_level);
-        int level = batteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int level = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         String levelSolution = String.valueOf(level).concat(" %");
         recyclerViewLine.add(new RecyclerItemsData(levelDescription, levelSolution));
 
@@ -64,8 +64,8 @@ public class BatteryFragment extends BaseDetailedFragment {
 
 
         String tempDescription = getString(R.string.battery_temperature_battery);
-        float temperature = batteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) / 10 +
-                batteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) % 10;
+        float temperature = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) / 10 +
+                mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) % 10;
         String tempSolution = String.valueOf(temperature).concat(" C");
         recyclerViewLine.add(new RecyclerItemsData(tempDescription, tempSolution));
 
@@ -79,7 +79,7 @@ public class BatteryFragment extends BaseDetailedFragment {
 
 
         String technologyDescription = getString(R.string.battery_technology);
-        String technologySolution = batteryIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
+        String technologySolution = mBatteryIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
         recyclerViewLine.add(new RecyclerItemsData(technologyDescription, technologySolution));
 
 
@@ -88,17 +88,18 @@ public class BatteryFragment extends BaseDetailedFragment {
             recyclerViewLine.add(new RecyclerItemsData(capacityDescription, getBatteryCapacity()));
         }
 
-        //toolbar title
+
         getActivity().setTitle(R.string.drawer_battery);
 
         return view;
     }
 
 
+    //gets power source
     private String chargeSource() {
         String batterySource;
 
-        switch (batteryIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)){
+        switch (mBatteryIntent.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)){
             case BatteryManager.BATTERY_PLUGGED_AC:
                 batterySource = getString(R.string.battery_ac_source);
                 break;
@@ -119,10 +120,11 @@ public class BatteryFragment extends BaseDetailedFragment {
     }
 
 
+    //gets battery's status
     private String powerStatus() {
         String batteryStatus;
 
-        switch (batteryIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)) {
+        switch (mBatteryIntent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)) {
             case BatteryManager.BATTERY_STATUS_CHARGING:
                 batteryStatus = getString(R.string.battery_charging);
                 break;
@@ -140,22 +142,24 @@ public class BatteryFragment extends BaseDetailedFragment {
     }
 
 
+    //gets battery's voltage level
     private String voltageLevel() {
 
-        int numberFirst = batteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) / 1000;
-        int numberSecond = batteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) % 1000 / 100;
-        int numberThird = batteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) % 100 / 10;
-        int numberFourth = batteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) % 10;
+        int numberFirst = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) / 1000;
+        int numberSecond = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) % 1000 / 100;
+        int numberThird = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) % 100 / 10;
+        int numberFourth = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) % 10;
 
         return new StringBuilder().append(numberFirst).append(",").append(numberSecond)
                 .append(numberThird).append(numberFourth).append(" V").toString();
     }
 
 
+    //gets battery's health status
     private String healthStatus() {
         String health;
 
-        switch (batteryIntent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)) {
+        switch (mBatteryIntent.getIntExtra(BatteryManager.EXTRA_HEALTH, -1)) {
             case BatteryManager.BATTERY_HEALTH_COLD:
                 health = getString(R.string.battery_health_cold);
                 break;
@@ -178,7 +182,7 @@ public class BatteryFragment extends BaseDetailedFragment {
     }
 
 
-    //gets battery capacity using Reflection
+    //gets battery's capacity using Reflection
     private String getBatteryCapacity() {
         double batteryCapacity = 0.0;
 

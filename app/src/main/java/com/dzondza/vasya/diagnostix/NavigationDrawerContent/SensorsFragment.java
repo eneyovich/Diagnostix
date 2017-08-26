@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,12 +18,12 @@ import java.util.List;
 
 
 /**
- * contains all sensors' names and vendors
+ * contains all mSensors' names and vendors
  */
 
 public class SensorsFragment extends BaseDetailedFragment implements SensorEventListener{
-    private SensorManager sensorManager;
-    private List<Sensor> sensors;
+    private SensorManager mSensorManager;
+    private List<Sensor> mSensors;
 
     public static final String SENSOR_TYPE_EXTRA_INTENT = "sensorType";
 
@@ -32,21 +32,21 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        // init recyclerView List
+        //activates recyclerView
         initializeRecyclerView(view);
 
 
-        //initialize sensors' list
-        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        //initializes mSensors' list
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
 
 
-        registerAllSensors(this, sensors, sensorManager);
-        for (Sensor sensor : sensors) {
+        registerAllSensors(this, mSensors, mSensorManager);
+        for (Sensor sensor : mSensors) {
             recyclerViewLine.add(new RecyclerItemsData(sensor.getName(), sensor.getVendor().concat("  --->")));
         }
 
-        //toolbar title
+
         getActivity().setTitle(R.string.drawer_sensors);
 
         return view;
@@ -66,10 +66,10 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-        for (int i = 0; i < sensors.size(); i++) {
+        for (int i = 0; i < mSensors.size(); i++) {
             if (position == i) {
                 Intent intent = new Intent(getActivity(), SensorDetailedActivity.class);
-                intent.putExtra(SENSOR_TYPE_EXTRA_INTENT, sensors.get(i).getType());
+                intent.putExtra(SENSOR_TYPE_EXTRA_INTENT, mSensors.get(i).getType());
                 startActivity(intent);
             }
         }
@@ -85,6 +85,6 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        sensorManager.unregisterListener(this);
+        mSensorManager.unregisterListener(this);
     }
 }

@@ -1,4 +1,4 @@
-package com.dzondza.vasya.diagnostix.MainContent;
+package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -26,29 +26,29 @@ import java.util.List;
 public class InstalledAppsFragment extends Fragment {
 
     private PackageManager mPackageManager;
-    private List<ApplicationInfo> appsInfoList;
+    private List<ApplicationInfo> mAppsInfoList;
 
-    private LayoutInflater inflater;
-    private View view;
+    private LayoutInflater mInflater;
+    private View mView;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        this.inflater = inflater;
-        view = inflater.inflate(R.layout.fragment_installed_apps, container, false);
+        this.mInflater = inflater;
+        mView = inflater.inflate(R.layout.fragment_installed_apps, container, false);
 
         //getting installed apps' list
         mPackageManager = getActivity().getPackageManager();
-        appsInfoList = mPackageManager
+        mAppsInfoList = mPackageManager
                 .getInstalledApplications(PackageManager.GET_META_DATA);
 
 
-        ListView listView = view.findViewById(R.id.listview_instaled_apps);
+        ListView listView = mView.findViewById(R.id.listview_instaled_apps);
         listView.setAdapter(new AppsListAdapter());
 
 
-        //apps' system info on listView item touch
+        //shows applications' system information after touch on item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -63,21 +63,21 @@ public class InstalledAppsFragment extends Fragment {
         //toolbar title
         getActivity().setTitle(R.string.drawer_applications);
 
-        return view;
+        return mView;
     }
 
 
-    //adapter for listView to represents list of apps
+    //adapter for listView to represent list of apps
     private class AppsListAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return appsInfoList.size();
+            return mAppsInfoList.size();
         }
 
         @Override
         public ApplicationInfo getItem(int position) {
-            return appsInfoList.get(position);
+            return mAppsInfoList.get(position);
         }
 
         @Override
@@ -91,31 +91,31 @@ public class InstalledAppsFragment extends Fragment {
 
             if (v == null) {
                 viewHolder = new ViewHolder();
-                view = inflater.inflate(R.layout.fragment_installed_apps, viewGroup, false);
+                mView = mInflater.inflate(R.layout.fragment_installed_apps, viewGroup, false);
 
 
-                viewHolder.appIconImageView = (ImageView) view
+                viewHolder.appIconImageView = (ImageView) mView
                         .findViewById(R.id.installed_apps_image_view);
-                viewHolder.appNameTextView = (TextView) view
+                viewHolder.appNameTextView = (TextView) mView
                         .findViewById(R.id.installed_apps_text_view);
-                viewHolder.appSourceDirTextView = (TextView) view
+                viewHolder.appSourceDirTextView = (TextView) mView
                         .findViewById(R.id.installed_apps_text_view2);
 
-                view.setTag(viewHolder);
+                mView.setTag(viewHolder);
 
             } else {
-                view = v;
-                viewHolder = (ViewHolder) view.getTag();
+                mView = v;
+                viewHolder = (ViewHolder) mView.getTag();
             }
 
-            final ApplicationInfo appInfo = appsInfoList.get(i);
+            final ApplicationInfo appInfo = mAppsInfoList.get(i);
 
             viewHolder.appIconImageView.setImageDrawable(appInfo.loadIcon(mPackageManager));
             viewHolder.appNameTextView.setText(appInfo.loadLabel(mPackageManager).toString());
             viewHolder.appSourceDirTextView.setText(appInfo.sourceDir);
 
 
-            return view;
+            return mView;
         }
     }
 

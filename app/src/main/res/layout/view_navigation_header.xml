@@ -8,14 +8,14 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="bottom"
-    android:background="@drawable/header_background_image">
+    android:background="@drawable/drawable_header_background">
 
     <ImageView
         android:layout_width="99dp"
         android:layout_height="99dp"
         android:paddingTop="21dp"
         android:contentDescription="@string/string_image"
-        app:srcCompat="@drawable/phone4"/>
+        app:srcCompat="@drawable/drawable_header_icon"/>
 
     <TextView
         android:id="@+id/header_textView_upper"

@@ -9,24 +9,25 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * RecyclerView.Adapter for fragments in DrawerLayout menu
+ * RecyclerView.Adapter for fragments in drawerLayout menu
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    protected List<RecyclerItemsData> mRecyclerItemsDataList;
-    protected AdapterView.OnItemClickListener onItemClickListener;
+    List<RecyclerItemsData> mRecyclerItemsDataList;
+    AdapterView.OnItemClickListener mOnItemClickListener;
+
 
     public RecyclerAdapter(List<RecyclerItemsData> recyclerItemsDataList,
                            AdapterView.OnItemClickListener onItemClickListener) {
         this.mRecyclerItemsDataList = recyclerItemsDataList;
-        this.onItemClickListener = onItemClickListener;
+        this.mOnItemClickListener = onItemClickListener;
     }
 
 
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items_layout,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_recycler_items_layout,
                 parent, false);
 
         return new RecyclerAdapter.ViewHolder(view);
@@ -34,8 +35,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        holder.descriptionTextView.setText(mRecyclerItemsDataList.get(position).description);
-        holder.solutionTextView.setText(mRecyclerItemsDataList.get(position).solution);
+        holder.mDescriptionTextView.setText(mRecyclerItemsDataList.get(position).mDescription);
+        holder.mSolutionTextView.setText(mRecyclerItemsDataList.get(position).mSolution);
     }
 
     @Override
@@ -44,23 +45,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
 
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView descriptionTextView;
-        TextView solutionTextView;
+        TextView mDescriptionTextView;
+        TextView mSolutionTextView;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            descriptionTextView = itemView.findViewById(R.id.text_view_description);
-            solutionTextView = itemView.findViewById(R.id.text_view_solution);
+            mDescriptionTextView = itemView.findViewById(R.id.text_view_description);
+            mSolutionTextView = itemView.findViewById(R.id.text_view_solution);
 
-            solutionTextView.setOnClickListener(this);
+            mSolutionTextView.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            onItemClickListener.onItemClick(null, view, getAdapterPosition(), view.getId());
+            mOnItemClickListener.onItemClick(null, view, getAdapterPosition(), view.getId());
         }
     }
 }
