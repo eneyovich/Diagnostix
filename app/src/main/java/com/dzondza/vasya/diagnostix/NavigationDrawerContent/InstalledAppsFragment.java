@@ -95,11 +95,11 @@ public class InstalledAppsFragment extends Fragment {
 
 
                 viewHolder.appIconImageView = (ImageView) mView
-                        .findViewById(R.id.installed_apps_image_view);
+                        .findViewById(R.id.image_installed_apps);
                 viewHolder.appNameTextView = (TextView) mView
-                        .findViewById(R.id.installed_apps_text_view);
+                        .findViewById(R.id.text_installed_apps_descript);
                 viewHolder.appSourceDirTextView = (TextView) mView
-                        .findViewById(R.id.installed_apps_text_view2);
+                        .findViewById(R.id.text_installed_apps_detailed);
 
                 mView.setTag(viewHolder);
 

@@ -18,12 +18,12 @@
         app:srcCompat="@drawable/drawable_header_icon"/>
 
     <TextView
-        android:id="@+id/header_textView_upper"
+        android:id="@+id/text_header_upper"
         style="@style/MyNavigationHeaderTextViewStyle"
         android:paddingTop="14dp"/>
 
     <TextView
-        android:id="@+id/header_textView_lower"
+        android:id="@+id/text_header_lower"
         style="@style/MyNavigationHeaderTextViewStyle"/>
 
 </LinearLayout>

@@ -33,7 +33,7 @@ public class SensorDetailedActivity extends AppCompatActivity implements SensorE
 
         mSensorType = getIntent().getIntExtra(SensorsFragment.SENSOR_TYPE_EXTRA_INTENT, 999);
 
-        mSensorTextView = (TextView) findViewById(R.id.sensor_detailed_textview);
+        mSensorTextView = (TextView) findViewById(R.id.text_sensor_detailed);
 
 
         new SensorsFragment().registerAllSensors(this, sensors, mSensorManager);

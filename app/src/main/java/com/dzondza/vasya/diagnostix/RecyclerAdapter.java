@@ -53,8 +53,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mDescriptionTextView = itemView.findViewById(R.id.text_view_description);
-            mSolutionTextView = itemView.findViewById(R.id.text_view_solution);
+            mDescriptionTextView = itemView.findViewById(R.id.text_recycler_item_description);
+            mSolutionTextView = itemView.findViewById(R.id.text_recycler_item_solution);
 
             mSolutionTextView.setOnClickListener(this);
         }

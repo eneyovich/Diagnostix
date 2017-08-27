@@ -63,9 +63,9 @@ public class MainScreenActivity extends AppCompatActivity
 
         //sets text to navigationView header's textViews
         View header = navigationView.getHeaderView(0);
-        TextView headerUpper = header.findViewById(R.id.header_textView_upper);
+        TextView headerUpper = header.findViewById(R.id.text_header_upper);
         headerUpper.setText(Build.BRAND);
-        TextView headerLower = header.findViewById(R.id.header_textView_lower);
+        TextView headerLower = header.findViewById(R.id.text_header_lower);
         headerLower.setText(Build.MODEL);
 
 
