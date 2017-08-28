@@ -5,8 +5,6 @@
     <string name="no">No</string>
     <string name="available">Available</string>
     <string name="unavailable">Unavailable</string>
-    <string name="exists">Exists</string>
-    <string name="not_exists">Not Exists</string>
     <string name="unknown">Unknown</string>
     <string name="open">   OPEN</string>
     <string name="option_unavailable">Option is Unavailable</string>
@@ -18,20 +16,6 @@
 
     <string name="open_drawer">Open Navigation Drawer</string>
     <string name="close_drawer">Close Navigation Drawer</string>
-
-
-    <!-- drawerlayout left menu-->
-    <string-array name="drawer_menu">
-        <item>System</item>
-        <item>Soc CPU</item>
-        <item>Display</item>
-        <item>Network</item>
-        <item>Android</item>
-        <item>Battery</item>
-        <item>Camera</item>
-        <item>Sensors</item>
-        <item>Directories</item>
-    </string-array>
 
 
     <!-- System strings -->
@@ -287,8 +271,6 @@
     <!-- Cameras solutions -->
     <string name="camera_supported">Supported</string>
     <string name="camera_not_supported">Not Supported</string>
-    <string name="camera_present">Present</string>
-    <string name="camera_not_present">Not Present</string>
     <string name="camera_rgba">RGBA</string>
     <string name="camera_rgb">RGB</string>
     <string name="camera_jpeg">JPEG</string>

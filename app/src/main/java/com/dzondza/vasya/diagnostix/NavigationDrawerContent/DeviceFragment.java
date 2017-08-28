@@ -1,5 +1,6 @@
 package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import java.io.File;
 
 public class DeviceFragment extends BaseDetailedFragment {
 
+    @SuppressLint("HardwareIds")
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

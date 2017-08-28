@@ -14,8 +14,8 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    List<RecyclerItemsData> mRecyclerItemsDataList;
-    AdapterView.OnItemClickListener mOnItemClickListener;
+    private List<RecyclerItemsData> mRecyclerItemsDataList;
+    private AdapterView.OnItemClickListener mOnItemClickListener;
 
 
     public RecyclerAdapter(List<RecyclerItemsData> recyclerItemsDataList,

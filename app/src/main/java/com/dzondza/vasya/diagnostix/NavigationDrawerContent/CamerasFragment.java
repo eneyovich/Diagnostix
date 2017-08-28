@@ -64,7 +64,7 @@ public class CamerasFragment extends BaseDetailedFragment {
 
 
     // gets camera2 Api's parameters
-    private void lollipopCameraParams(String camId, List<RecyclerItemsData>dataList) {
+    private void lollipopCameraParams(String camId, List<RecyclerItemsData> dataList) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             CameraManager cameraManager = (CameraManager)
@@ -175,7 +175,7 @@ public class CamerasFragment extends BaseDetailedFragment {
     }
 
     //gets mCamera Api's parameters(for android versions before lollipop)
-    private void oldCameraParams(int cameraId, List<RecyclerItemsData>dataList) {
+    private void oldCameraParams(int cameraId, List<RecyclerItemsData> dataList) {
         try {
             if (mCamera == null) {
                 mCamera = Camera.open(cameraId);

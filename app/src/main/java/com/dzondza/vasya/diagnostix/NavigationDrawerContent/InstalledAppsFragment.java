@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -38,26 +39,38 @@ public class InstalledAppsFragment extends Fragment {
         this.mInflater = inflater;
         mView = inflater.inflate(R.layout.fragment_installed_apps, container, false);
 
-        //getting installed apps' list
-        mPackageManager = getActivity().getPackageManager();
-        mAppsInfoList = mPackageManager
-                .getInstalledApplications(PackageManager.GET_META_DATA);
-
-
-        ListView listView = mView.findViewById(R.id.listview_instaled_apps);
-        listView.setAdapter(new AppsListAdapter());
-
-
-        //shows applications' system information after touch on item
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        new AsyncTask<Void, Void, Void>() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ApplicationInfo item = (ApplicationInfo) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                intent.setData(Uri.parse("package:" + item.packageName));
-                startActivity(intent);
+            protected void onPreExecute() {
+                //getting installed apps' list
+                mPackageManager = getActivity().getPackageManager();
+                super.onPreExecute();
             }
-        });
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                mAppsInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                ListView listView = mView.findViewById(R.id.listview_instaled_apps);
+                listView.setAdapter(new AppsListAdapter());
+
+                //shows applications' system information after touch on item
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        ApplicationInfo item = (ApplicationInfo) adapterView.getItemAtPosition(i);
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        intent.setData(Uri.parse("package:" + item.packageName));
+                        startActivity(intent);
+                    }
+                });
+                super.onPostExecute(aVoid);
+            }
+        }.execute();
 
 
         //toolbar title

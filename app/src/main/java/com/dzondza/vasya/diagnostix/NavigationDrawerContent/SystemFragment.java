@@ -49,7 +49,7 @@ public class SystemFragment extends BaseDetailedFragment {
             }
         }
         mSupportedAbis = mSupportedAbis.replaceAll("null","");
-        recyclerViewLine.add(new RecyclerItemsData("Instruction Set", mSupportedAbis));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_instruction_set), mSupportedAbis));
 
 
 
@@ -70,7 +70,7 @@ public class SystemFragment extends BaseDetailedFragment {
         //Clock Speed
         String clockSpeedmin = Collections.min(maxCpuFreqList).toString();
         String clockSpeedmax = Collections.max(maxCpuFreqList).toString();
-        recyclerViewLine.add(new RecyclerItemsData("Clock Speed", new StringBuilder(clockSpeedmin)
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_clock_speed), new StringBuilder(clockSpeedmin)
                 .append(" MHz - ").append(clockSpeedmax).append(" MHz").toString()));
 
 

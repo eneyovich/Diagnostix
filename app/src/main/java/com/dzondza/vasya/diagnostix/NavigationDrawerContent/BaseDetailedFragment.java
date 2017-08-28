@@ -26,7 +26,7 @@ public abstract class BaseDetailedFragment extends Fragment
     RecyclerAdapter adapter;
 
 
-    protected void initializeRecyclerView(View view) {
+    void initializeRecyclerView(View view) {
         recyclerViewLine = new ArrayList<>();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);

@@ -1,5 +1,6 @@
 package com.dzondza.vasya.diagnostix.NavigationDrawerContent;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -25,6 +26,7 @@ import com.dzondza.vasya.diagnostix.R;
 
 public class NetworkFragment extends BaseDetailedFragment {
 
+    @SuppressLint("HardwareIds")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

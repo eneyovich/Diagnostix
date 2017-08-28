@@ -53,8 +53,8 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
     }
 
 
-    protected void registerAllSensors(SensorEventListener sensorListener,
-                                      List<Sensor>sensorList, SensorManager sensManager) {
+    void registerAllSensors(SensorEventListener sensorListener,
+                            List<Sensor> sensorList, SensorManager sensManager) {
         for (Sensor sensor: sensorList) {
             if (sensor != null) {
                 sensManager.registerListener(sensorListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
