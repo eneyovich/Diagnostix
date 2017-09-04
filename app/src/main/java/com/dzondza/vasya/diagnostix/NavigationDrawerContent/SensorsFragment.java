@@ -35,16 +35,7 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
         //activates recyclerView
         initializeRecyclerView(view);
 
-        //initializes mSensors' list
-        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        mSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
-
-
-        registerAllSensors(this, mSensors, mSensorManager);
-        for (Sensor sensor : mSensors) {
-            recyclerViewLine.add(new RecyclerItemsData(sensor.getName(), sensor.getVendor().concat("  --->")));
-        }
-
+        recyclerListData();
 
         getActivity().setTitle(R.string.drawer_sensors);
 
@@ -85,5 +76,17 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
     public void onDestroyView() {
         super.onDestroyView();
         mSensorManager.unregisterListener(this);
+    }
+
+    @Override
+    protected void recyclerListData() {
+        //initializes mSensors' list
+        mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        mSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        registerAllSensors(this, mSensors, mSensorManager);
+        for (Sensor sensor : mSensors) {
+            recyclerViewLine.add(new RecyclerItemsData(sensor.getName(), sensor.getVendor().concat("  --->")));
+        }
     }
 }

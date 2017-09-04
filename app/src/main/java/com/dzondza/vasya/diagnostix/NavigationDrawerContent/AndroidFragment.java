@@ -22,7 +22,16 @@ public class AndroidFragment extends BaseDetailedFragment {
         // activates recyclerView
         initializeRecyclerView(view);
 
+        recyclerListData();
 
+        getActivity().setTitle(R.string.drawer_android);
+
+        return view;
+    }
+
+
+    @Override
+    protected void recyclerListData() {
         String versionName;
         switch (Build.VERSION.SDK_INT) {
             case 19: versionName = getString(R.string.kitkat);
@@ -84,10 +93,5 @@ public class AndroidFragment extends BaseDetailedFragment {
 
         String type = getString(R.string.android_type);
         recyclerViewLine.add(new RecyclerItemsData(type, Build.TYPE));
-
-
-        getActivity().setTitle(R.string.drawer_android);
-
-        return view;
     }
 }

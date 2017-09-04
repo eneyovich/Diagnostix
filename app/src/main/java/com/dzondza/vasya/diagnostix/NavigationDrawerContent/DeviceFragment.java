@@ -35,6 +35,48 @@ public class DeviceFragment extends BaseDetailedFragment {
         //activates recyclerView
         initializeRecyclerView(view);
 
+        recyclerListData();
+
+        getActivity().setTitle(R.string.drawer_device);
+
+        return view;
+    }
+
+
+    //gets internal storage's free space in MB
+    private String freeInternalSpace() {
+        long blockSize, availableBlocks;
+
+        File file = Environment.getDataDirectory();
+        StatFs statFs = new StatFs(file.getPath());
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            blockSize = statFs.getBlockSize();
+            availableBlocks = statFs.getAvailableBlocks();
+        } else {
+            blockSize = statFs.getBlockSizeLong();
+            availableBlocks = statFs.getAvailableBlocksLong();
+        }
+
+        return String.valueOf(blockSize*availableBlocks/1024/1024);
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+        if (position == 13) {
+            try {
+                startActivity(new Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS));
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getString(R.string.option_unavailable), Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onItemClick(adapterView, view, position, l);
+    }
+
+    @Override
+    protected void recyclerListData() {
         String model = getString(R.string.device_model);
         recyclerViewLine.add(new RecyclerItemsData(model, new StringBuilder(Build.BRAND)
                 .append(" ").append(Build.MODEL).toString()));
@@ -88,7 +130,6 @@ public class DeviceFragment extends BaseDetailedFragment {
         String freeInternalSpace = getString(R.string.device_internal_free_space);
         recyclerViewLine.add(new RecyclerItemsData(freeInternalSpace, freeInternalSpace().concat(" Mb")));
 
-
         //Internal storage's total space in MB
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             String totalInternalSpace = getString(R.string.device_internal_total_space);
@@ -97,45 +138,6 @@ public class DeviceFragment extends BaseDetailedFragment {
             recyclerViewLine.add(new RecyclerItemsData(totalInternalSpace, totalInternalSpaceSolution));
         }
 
-
         recyclerViewLine.add(new RecyclerItemsData(getString(R.string.internal_storage_settings), getString(R.string.open)));
-
-
-        getActivity().setTitle(R.string.drawer_device);
-
-        return view;
-    }
-
-
-    //gets internal storage's free space in MB
-    private String freeInternalSpace() {
-        long blockSize, availableBlocks;
-
-        File file = Environment.getDataDirectory();
-        StatFs statFs = new StatFs(file.getPath());
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            blockSize = statFs.getBlockSize();
-            availableBlocks = statFs.getAvailableBlocks();
-        } else {
-            blockSize = statFs.getBlockSizeLong();
-            availableBlocks = statFs.getAvailableBlocksLong();
-        }
-
-        return String.valueOf(blockSize*availableBlocks/1024/1024);
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-        if (position == 13) {
-            try {
-                startActivity(new Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS));
-            } catch (Exception e) {
-                Toast.makeText(getActivity(), getString(R.string.option_unavailable), Toast.LENGTH_SHORT).show();
-            }
-        }
-        super.onItemClick(adapterView, view, position, l);
     }
 }

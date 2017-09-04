@@ -27,7 +27,6 @@ public class SystemFragment extends BaseDetailedFragment {
     private int mCpuNumber;
     private String mSupportedAbis;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +35,62 @@ public class SystemFragment extends BaseDetailedFragment {
         //activates recyclerView
         initializeRecyclerView(view);
 
+        recyclerListData();
+
+        getActivity().setTitle(R.string.drawer_system);
+
+        return view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mCoreFrequencyRunnable = new Runnable() {
+            @Override
+            public void run() {
+
+                //refreshes each core's frequency
+                for (int i = 0; i < mCpuNumber; i++) {
+                    int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
+                            "/cpufreq/scaling_cur_freq") / 1000;
+                    recyclerViewLine.set(i + 2, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
+                            .concat(" MHz")));
+                    adapter.notifyDataSetChanged();
+                }
+                mHandler.postDelayed(this, 5);
+            }
+        };
+        mHandler.postDelayed(mCoreFrequencyRunnable, 100);
+    }
+
+
+    //gets integer value from file
+    private static int readIntegerFile(String filePath) {
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(filePath)), 1000);
+            String line = reader.readLine();
+            reader.close();
+
+            return Integer.parseInt(line);
+        }catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+    @Override
+    public void onPause() {
+        mHandler.removeCallbacks(mCoreFrequencyRunnable);
+        super.onPause();
+    }
+
+
+    @Override
+    protected void recyclerListData() {
         Runtime runtime = Runtime.getRuntime();
         mCpuNumber = runtime.availableProcessors();
         recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_cores), String.valueOf(mCpuNumber)));
@@ -45,7 +100,7 @@ public class SystemFragment extends BaseDetailedFragment {
             mSupportedAbis = new StringBuilder(Build.CPU_ABI).append(" ").append(Build.CPU_ABI2).toString();
         } else {
             for (String s : Build.SUPPORTED_ABIS) {
-                    mSupportedAbis += s + " ";
+                mSupportedAbis += s + " ";
             }
         }
         mSupportedAbis = mSupportedAbis.replaceAll("null","");
@@ -57,7 +112,7 @@ public class SystemFragment extends BaseDetailedFragment {
         for (int i = 0; i < mCpuNumber; i++) {
             //gets each core frequency
             int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
-            "/cpufreq/scaling_cur_freq") / 1000;
+                    "/cpufreq/scaling_cur_freq") / 1000;
             recyclerViewLine.add(2 + i, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
                     .concat(" MHz")));
 
@@ -112,56 +167,5 @@ public class SystemFragment extends BaseDetailedFragment {
 
         String host = getString(R.string.system_host);
         recyclerViewLine.add(new RecyclerItemsData(host, Build.HOST));
-
-
-        getActivity().setTitle(R.string.drawer_system);
-
-        return view;
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        mCoreFrequencyRunnable = new Runnable() {
-            @Override
-            public void run() {
-
-                //refreshes each core's frequency
-                for (int i = 0; i < mCpuNumber; i++) {
-                    int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
-                            "/cpufreq/scaling_cur_freq") / 1000;
-                    recyclerViewLine.set(i + 2, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
-                            .concat(" MHz")));
-                    adapter.notifyDataSetChanged();
-                }
-                mHandler.postDelayed(this, 5);
-            }
-        };
-        mHandler.postDelayed(mCoreFrequencyRunnable, 100);
-    }
-
-
-    //gets integer value from file
-    private static int readIntegerFile(String filePath) {
-        try {
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(new FileInputStream(filePath)), 1000);
-            String line = reader.readLine();
-            reader.close();
-
-            return Integer.parseInt(line);
-        }catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
-
-
-    @Override
-    public void onPause() {
-        mHandler.removeCallbacks(mCoreFrequencyRunnable);
-        super.onPause();
     }
 }

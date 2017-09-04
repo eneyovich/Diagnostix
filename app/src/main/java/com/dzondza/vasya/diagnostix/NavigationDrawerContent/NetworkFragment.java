@@ -25,17 +25,45 @@ import com.dzondza.vasya.diagnostix.R;
  */
 
 public class NetworkFragment extends BaseDetailedFragment {
+    private View view;
 
     @SuppressLint("HardwareIds")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
+        view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
         // activates recyclerView
         initializeRecyclerView(view);
 
+        recyclerListData();
 
+        getActivity().setTitle(R.string.drawer_network);
+
+        return view;
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+        try {
+            if (position < 12) {
+                startActivity(new Intent(Settings.ACTION_APN_SETTINGS));
+            } else if (position >= 12 && position <= 13) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }else  {
+                startActivity(new Intent(Settings.ACTION_WIFI_IP_SETTINGS));
+            }
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), getString(R.string.option_unavailable), Toast.LENGTH_SHORT).show();
+        }
+
+        super.onItemClick(adapterView, view, position, l);
+    }
+
+    @Override
+    protected void recyclerListData() {
         TelephonyManager telephonyManager = (TelephonyManager)
                 getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
@@ -324,30 +352,5 @@ public class NetworkFragment extends BaseDetailedFragment {
                 wifiState = getString(R.string.unknown);
         }
         recyclerViewLine.add(new RecyclerItemsData(wifiStateDescript, wifiState));
-
-
-
-        getActivity().setTitle(R.string.drawer_network);
-
-        return view;
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-        try {
-            if (position < 12) {
-                startActivity(new Intent(Settings.ACTION_APN_SETTINGS));
-            } else if (position >= 12 && position <= 13) {
-                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            }else  {
-                startActivity(new Intent(Settings.ACTION_WIFI_IP_SETTINGS));
-            }
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), getString(R.string.option_unavailable), Toast.LENGTH_SHORT).show();
-        }
-
-        super.onItemClick(adapterView, view, position, l);
     }
 }

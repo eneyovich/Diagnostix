@@ -38,24 +38,7 @@ public class CamerasFragment extends BaseDetailedFragment {
         // activates recyclerView
         initializeRecyclerView(view);
 
-
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.camera_rear_camera), getString(R.string.camera_characteristics)));
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            lollipopCameraParams("0", recyclerViewLine);
-
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.camera_front_camera),
-                    getString(R.string.camera_characteristics)));
-            lollipopCameraParams("1", recyclerViewLine);
-
-        } else {
-            oldCameraParams(0, recyclerViewLine);
-
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.camera_front_camera),
-                    getString(R.string.camera_characteristics)));
-            oldCameraParams(1, recyclerViewLine);
-        }
-
+        recyclerListData();
 
         getActivity().setTitle(R.string.drawer_camera);
 
@@ -282,6 +265,27 @@ public class CamerasFragment extends BaseDetailedFragment {
                 mCamera.release();
             }
             mCamera = null;
+        }
+    }
+
+    @Override
+    protected void recyclerListData() {
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.camera_rear_camera), getString(R.string.camera_characteristics)));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            lollipopCameraParams("0", recyclerViewLine);
+
+            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.camera_front_camera),
+                    getString(R.string.camera_characteristics)));
+            lollipopCameraParams("1", recyclerViewLine);
+
+        } else {
+            oldCameraParams(0, recyclerViewLine);
+
+            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.camera_front_camera),
+                    getString(R.string.camera_characteristics)));
+            oldCameraParams(1, recyclerViewLine);
         }
     }
 }

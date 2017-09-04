@@ -33,7 +33,29 @@ public class DisplayFragment extends BaseDetailedFragment {
         //activates recyclerView
         initializeRecyclerView(view);
 
+        recyclerListData();
 
+        getActivity().setTitle(R.string.drawer_display);
+
+        return view;
+    }
+
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        if (position == 0) {
+            try {
+                startActivity(new Intent(Settings.ACTION_DISPLAY_SETTINGS));
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), getString(R.string.option_unavailable), Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onItemClick(adapterView, view, position, l);
+    }
+
+
+    @Override
+    protected void recyclerListData() {
         Display display = getActivity().getWindowManager().getDefaultDisplay();
 
 
@@ -109,23 +131,5 @@ public class DisplayFragment extends BaseDetailedFragment {
 
         String openGLVersion = getString(R.string.display_opengl_version);
         recyclerViewLine.add(new RecyclerItemsData(openGLVersion, configurationInfo.getGlEsVersion()));
-
-
-        getActivity().setTitle(R.string.drawer_display);
-
-        return view;
-    }
-
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        if (position == 0) {
-            try {
-                startActivity(new Intent(Settings.ACTION_DISPLAY_SETTINGS));
-            } catch (Exception e) {
-                Toast.makeText(getActivity(), getString(R.string.option_unavailable), Toast.LENGTH_SHORT).show();
-            }
-        }
-        super.onItemClick(adapterView, view, position, l);
     }
 }

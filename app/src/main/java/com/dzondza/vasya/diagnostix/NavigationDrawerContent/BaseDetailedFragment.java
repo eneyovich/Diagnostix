@@ -18,8 +18,7 @@ import java.util.List;
  * in drawerLayout, except InstalledAppsFragment
  */
 
-public abstract class BaseDetailedFragment extends Fragment
-        implements AdapterView.OnItemClickListener {
+public abstract class BaseDetailedFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     protected List<RecyclerItemsData> recyclerViewLine;
     protected RecyclerAdapter adapter;
@@ -44,4 +43,6 @@ public abstract class BaseDetailedFragment extends Fragment
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {}
+
+    protected abstract void recyclerListData();
 }

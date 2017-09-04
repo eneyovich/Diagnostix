@@ -32,57 +32,12 @@ public class BatteryFragment extends BaseDetailedFragment {
         // activates recyclerView
         initializeRecyclerView(view);
 
-
-        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-        mBatteryIntent = getActivity().registerReceiver(null, intentFilter);
-
-        if (Build.VERSION.SDK_INT >= 22) {
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_saver_settings), getString(R.string.open)));
-        }
-
-        if (Build.VERSION.SDK_INT >= 23) {
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_optimization_settings),
-                    getString(R.string.open)));
-        }
-
-        String powerSource = getString(R.string.battery_power_source);
-        recyclerViewLine.add(new RecyclerItemsData(powerSource, chargeSource()));
-
-        String levelDescription = getString(R.string.battery_level);
-        int level = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-        String levelSolution = String.valueOf(level).concat(" %");
-        recyclerViewLine.add(new RecyclerItemsData(levelDescription, levelSolution));
-
-        String batteryStatus = getString(R.string.battery_status);
-        recyclerViewLine.add(new RecyclerItemsData(batteryStatus, powerStatus()));
-
-        String tempDescription = getString(R.string.battery_temperature_battery);
-        float temperature = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) / 10 +
-                mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) % 10;
-        String tempSolution = String.valueOf(temperature).concat(" C");
-        recyclerViewLine.add(new RecyclerItemsData(tempDescription, tempSolution));
-
-        String batteryVoltage = getString(R.string.battery_voltage);
-        recyclerViewLine.add(new RecyclerItemsData(batteryVoltage, voltageLevel()));
-
-        String batteryHealth = getString(R.string.battery_health);
-        recyclerViewLine.add(new RecyclerItemsData(batteryHealth, healthStatus()));
-
-        String technologyDescription = getString(R.string.battery_technology);
-        String technologySolution = mBatteryIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
-        recyclerViewLine.add(new RecyclerItemsData(technologyDescription, technologySolution));
-
-        if (Build.VERSION.SDK_INT >= 21) {
-            String capacityDescription = getString(R.string.battery_capacity);
-            recyclerViewLine.add(new RecyclerItemsData(capacityDescription, getBatteryCapacity()));
-        }
-
+        recyclerListData();
 
         getActivity().setTitle(R.string.drawer_battery);
 
         return view;
     }
-
 
     //gets power source
     private String chargeSource() {
@@ -108,7 +63,6 @@ public class BatteryFragment extends BaseDetailedFragment {
         return batterySource;
     }
 
-
     //gets battery's status
     private String powerStatus() {
         String batteryStatus;
@@ -129,7 +83,6 @@ public class BatteryFragment extends BaseDetailedFragment {
 
         return batteryStatus;
     }
-
 
     //gets battery's voltage level
     private String voltageLevel() {
@@ -206,5 +159,53 @@ public class BatteryFragment extends BaseDetailedFragment {
         }
 
         super.onItemClick(adapterView, view, position, l);
+    }
+
+
+    @Override
+    protected void recyclerListData() {
+        IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        mBatteryIntent = getActivity().registerReceiver(null, intentFilter);
+
+        if (Build.VERSION.SDK_INT >= 22) {
+            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_saver_settings), getString(R.string.open)));
+        }
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_optimization_settings),
+                    getString(R.string.open)));
+        }
+
+        String powerSource = getString(R.string.battery_power_source);
+        recyclerViewLine.add(new RecyclerItemsData(powerSource, chargeSource()));
+
+        String levelDescription = getString(R.string.battery_level);
+        int level = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        String levelSolution = String.valueOf(level).concat(" %");
+        recyclerViewLine.add(new RecyclerItemsData(levelDescription, levelSolution));
+
+        String batteryStatus = getString(R.string.battery_status);
+        recyclerViewLine.add(new RecyclerItemsData(batteryStatus, powerStatus()));
+
+        String tempDescription = getString(R.string.battery_temperature_battery);
+        float temperature = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) / 10 +
+                mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) % 10;
+        String tempSolution = String.valueOf(temperature).concat(" C");
+        recyclerViewLine.add(new RecyclerItemsData(tempDescription, tempSolution));
+
+        String batteryVoltage = getString(R.string.battery_voltage);
+        recyclerViewLine.add(new RecyclerItemsData(batteryVoltage, voltageLevel()));
+
+        String batteryHealth = getString(R.string.battery_health);
+        recyclerViewLine.add(new RecyclerItemsData(batteryHealth, healthStatus()));
+
+        String technologyDescription = getString(R.string.battery_technology);
+        String technologySolution = mBatteryIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
+        recyclerViewLine.add(new RecyclerItemsData(technologyDescription, technologySolution));
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            String capacityDescription = getString(R.string.battery_capacity);
+            recyclerViewLine.add(new RecyclerItemsData(capacityDescription, getBatteryCapacity()));
+        }
     }
 }

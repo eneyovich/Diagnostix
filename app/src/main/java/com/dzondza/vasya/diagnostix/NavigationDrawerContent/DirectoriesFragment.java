@@ -25,7 +25,16 @@ public class DirectoriesFragment extends BaseDetailedFragment {
         // activates recyclerView
         initializeRecyclerView(view);
 
+        recyclerListData();
 
+        getActivity().setTitle(R.string.drawer_directories);
+
+        return view;
+    }
+
+
+    @Override
+    protected void recyclerListData() {
         String data = getString(R.string.directory_data);
         recyclerViewLine.add(new RecyclerItemsData(data,  Environment.getDataDirectory().toString()));
 
@@ -106,10 +115,5 @@ public class DirectoriesFragment extends BaseDetailedFragment {
 
         String storageState = getString(R.string.directory_storage_state);
         recyclerViewLine.add(new RecyclerItemsData(storageState, Environment.getExternalStorageState()));
-
-
-        getActivity().setTitle(R.string.drawer_directories);
-
-        return view;
     }
 }
