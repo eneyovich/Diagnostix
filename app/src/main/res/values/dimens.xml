@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--activity_sensor_detailed -->
+    <dimen name="cardview_radius_and_elevation">5dp</dimen>
+    <dimen name="cardview_sensor_margin_bottom">53dp</dimen>
+    <dimen name="cardview_sensor_content_padding">10dp</dimen>
+    <dimen name="textview_sensor_layout_padding_bottom">55dp</dimen>
+    <dimen name="textview_sensor_text_size">18sp</dimen>
+    <!--fragment_installed_apps-->
+    <dimen name="cardview_intalled_apps_content_padding">5dp</dimen>
+    <dimen name="imageview_installed_apps_height">60dp</dimen>
+    <dimen name="imageview_installed_apps_margin_end">10dp</dimen>
+    <dimen name="text_detailed_installed_apps_height">77dp</dimen>
+    <!--fragment_recyclerview-->
+    <dimen name="cardview_recyclerview_content_padding">10dp</dimen>
+    <!--view_navigation_header-->
+    <dimen name="navigation_header_height">190dp</dimen>
+    <dimen name="navigation_header_padding">15dp</dimen>
+    <dimen name="navigation_header_image_width_height">100dp</dimen>
+    <dimen name="navigation_header_image_padding_top">20dp</dimen>
+    <dimen name="navigation_header_text_padding_top">15dp</dimen>
+    <!--view_recycler_items_layout-->
+    <dimen name="recycler_items_padding">3dp</dimen>
+    <dimen name="recycler_items_height">83dp</dimen>
+    <!--MyCardViewStyle-->
+    <dimen name="my_cardview_style_margin_top">65dp</dimen>
+    <dimen name="my_cardview_style_margin_left_right">13dp</dimen>
+    <dimen name="my_cardview_style_margin_bottom">20dp</dimen>
+
+</resources>

@@ -35,43 +35,33 @@ public class DeviceFragment extends BaseDetailedFragment {
         //activates recyclerView
         initializeRecyclerView(view);
 
-
         String model = getString(R.string.device_model);
         recyclerViewLine.add(new RecyclerItemsData(model, new StringBuilder(Build.BRAND)
                 .append(" ").append(Build.MODEL).toString()));
 
-
         String manufacturer = getString(R.string.device_manufacturer);
         recyclerViewLine.add(new RecyclerItemsData(manufacturer, Build.MANUFACTURER));
-
 
         String modelDetailed = getString(R.string.device_model_detal);
         recyclerViewLine.add(new RecyclerItemsData(modelDetailed, Build.MODEL));
 
-
         String brand = getString(R.string.device_brand);
         recyclerViewLine.add(new RecyclerItemsData(brand, Build.BRAND));
-
 
         String board = getString(R.string.device_board);
         recyclerViewLine.add(new RecyclerItemsData(board, Build.BOARD));
 
-
         String device = getString(R.string.device_device);
         recyclerViewLine.add(new RecyclerItemsData(device, Build.DEVICE));
-
 
         String hardware = getString(R.string.device_hardware);
         recyclerViewLine.add(new RecyclerItemsData(hardware, Build.HARDWARE));
 
-
         String product = getString(R.string.device_product);
         recyclerViewLine.add(new RecyclerItemsData(product, Build.PRODUCT));
 
-
         String serial = getString(R.string.device_serial);
         recyclerViewLine.add(new RecyclerItemsData(serial, Build.SERIAL));
-
 
         //           Memory values           //
 
@@ -82,12 +72,10 @@ public class DeviceFragment extends BaseDetailedFragment {
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
         activityManager.getMemoryInfo(memoryInfo);
 
-
         //total ram memory
         String ramTotal = getString(R.string.device_total_ram);
         String ramTotalSolution = String.valueOf(memoryInfo.totalMem/1024/1024).concat(" Mb");
         recyclerViewLine.add(new RecyclerItemsData(ramTotal, ramTotalSolution));
-
 
         //available ram memory
         String ramAvailableDescript = getString(R.string.device_available_ram);
@@ -95,7 +83,6 @@ public class DeviceFragment extends BaseDetailedFragment {
         String ramAvailable = new StringBuilder().append(memoryInfo.availMem/1024/1024)
                 .append(" Mb (").append(ramPercent).append( " %)").toString();
         recyclerViewLine.add(new RecyclerItemsData(ramAvailableDescript, ramAvailable));
-
 
         //Internal storage's free space in MB
         String freeInternalSpace = getString(R.string.device_internal_free_space);

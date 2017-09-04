@@ -52,7 +52,6 @@ public class SystemFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_instruction_set), mSupportedAbis));
 
 
-
         List<Integer> maxCpuFreqList = new ArrayList<>(mCpuNumber);
 
         for (int i = 0; i < mCpuNumber; i++) {

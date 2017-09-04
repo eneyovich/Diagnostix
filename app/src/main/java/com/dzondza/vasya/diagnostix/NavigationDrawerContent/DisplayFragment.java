@@ -43,7 +43,6 @@ public class DisplayFragment extends BaseDetailedFragment {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         display.getRealMetrics(displayMetrics);
 
-
         //display's resolution
         int heightPixels = displayMetrics.heightPixels;
         int widthPixels = displayMetrics.widthPixels;
@@ -53,12 +52,10 @@ public class DisplayFragment extends BaseDetailedFragment {
                 .append(" x ").append(heightPixels).toString();
         recyclerViewLine.add(new RecyclerItemsData(resolutionDescript, resolution));
 
-
         // pixel density
         String pixelDensityDescript = getString(R.string.display_pixel_density);
         String pixelDensity = String.valueOf(displayMetrics.densityDpi).concat(" dpi");
         recyclerViewLine.add(new RecyclerItemsData(pixelDensityDescript, pixelDensity));
-
 
         // xdpi/ydpi
         double xdpi = displayMetrics.xdpi;
@@ -76,7 +73,6 @@ public class DisplayFragment extends BaseDetailedFragment {
                 .append(GLES20.GL_VERSION).toString();
         recyclerViewLine.add(new RecyclerItemsData(technologyDescript, technology));
 
-
         //display's diagonal in inches
         double xInches = Math.pow(widthPixels/xdpi, 2);
         double yInches = Math.pow(heightPixels/ydpi, 2);
@@ -84,7 +80,6 @@ public class DisplayFragment extends BaseDetailedFragment {
         double screenInches = 0.01 * Math.round(100 * inches);
         String diagonal = getString(R.string.display_screen_diagonal);
         recyclerViewLine.add(new RecyclerItemsData(diagonal, String.valueOf(screenInches)));
-
 
         // default display's orientation
         String orientationDescript = getString(R.string.display_orientation);
@@ -97,11 +92,9 @@ public class DisplayFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(orientationDescript, orientation));
 
-
         //display's name
         String type = getString(R.string.display_type);
         recyclerViewLine.add(new RecyclerItemsData(type, display.getName()));
-
 
         // display's rate in FPS
         String rateDescript = getString(R.string.display_rate);

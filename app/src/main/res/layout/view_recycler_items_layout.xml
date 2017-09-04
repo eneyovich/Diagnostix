@@ -4,9 +4,9 @@ fragments from drawerLayout except InstalledAppsFragment -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="83dp"
+    android:layout_height="@dimen/recycler_items_height"
     android:orientation="horizontal"
-    android:padding="3dp"
+    android:padding="@dimen/recycler_items_padding"
     android:weightSum="1">
 
     <TextView

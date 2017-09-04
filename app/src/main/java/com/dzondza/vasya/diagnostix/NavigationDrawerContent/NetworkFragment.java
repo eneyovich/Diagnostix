@@ -39,7 +39,6 @@ public class NetworkFragment extends BaseDetailedFragment {
         TelephonyManager telephonyManager = (TelephonyManager)
                 getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
-
         //returns constant that represents the current state of all phone calls
         String callStateDescript = getString(R.string.network_device_call_state);
         String callState;
@@ -57,7 +56,6 @@ public class NetworkFragment extends BaseDetailedFragment {
                 callState = getString(R.string.unknown);
         }
         recyclerViewLine.add(new RecyclerItemsData(callStateDescript, callState));
-
 
         //type of activity on a data connection (cellular)
         String connectActivityDescript = getString(R.string.network_data_connection_activity);
@@ -83,7 +81,6 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(connectActivityDescript, connectActivity));
 
-
         //data connection state (cellular).
         String connectStateDescript = getString(R.string.network_connection_state);
         String connectState;
@@ -105,23 +102,19 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(connectStateDescript, connectState));
 
-
         //ISO country code
         String isoCodeDescript = getString(R.string.network_iso_country_code);
         String isoCode = telephonyManager.getNetworkCountryIso();
         view.setTag(isoCode);
         recyclerViewLine.add(new RecyclerItemsData(isoCodeDescript, isoCode));
 
-
         //alphabetic name of current registered operator.
         String operatorName = getString(R.string.network_operator_name);
         recyclerViewLine.add(new RecyclerItemsData(operatorName, telephonyManager.getNetworkOperatorName()));
 
-
         //numeric name (MCC+MNC) of current registered operator.
         String operatorCode = getString(R.string.network_operator_numeric_code);
         recyclerViewLine.add(new RecyclerItemsData(operatorCode, telephonyManager.getNetworkOperator()));
-
 
         //NETWORK_TYPE_xxxx for current data connection.
         String networkTypeDescript = getString(R.string.network_type);
@@ -154,7 +147,6 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(networkTypeDescript, networkTypeSolution));
 
-
         //Returns the number of available phones
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -162,7 +154,6 @@ public class NetworkFragment extends BaseDetailedFragment {
             String simSlots = String.valueOf(telephonyManager.getPhoneCount());
             recyclerViewLine.add(new RecyclerItemsData(simSlotsDescript, simSlots));
         }
-
 
         //device's radio type
         String radioDescript = getString(R.string.network_type_radio);
@@ -185,11 +176,9 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(radioDescript, radio));
 
-
         //ISO country code equivalent for the SIM provider's country code.
         String providersCode = getString(R.string.network_sim_providers_country_code);
         recyclerViewLine.add(new RecyclerItemsData(providersCode, telephonyManager.getSimCountryIso()));
-
 
         //default SIM card's state
         String simStateDescript = getString(R.string.network_sim_state);
@@ -227,7 +216,6 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(simStateDescript, simState));
 
-
         //true if device is considered roaming on current network
         String roamingDescript = getString(R.string.network_roaming);
         String roaming;
@@ -239,22 +227,18 @@ public class NetworkFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(roamingDescript, roaming));
 
 
-
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-
         //wifi type of network
         String networkType = getString(R.string.wifi_network_type);
         recyclerViewLine.add(new RecyclerItemsData(networkType, networkInfo.getTypeName()));
 
-
         //wifi state information
         String networkStateInform = getString(R.string.wifi_network_state_information);
         recyclerViewLine.add(new RecyclerItemsData(networkStateInform, networkInfo.getExtraInfo()));
-
 
         //Indicates whether network connectivity is possible
         String connectivityDescript = getString(R.string.wifi_connectivity);
@@ -266,7 +250,6 @@ public class NetworkFragment extends BaseDetailedFragment {
         }
         recyclerViewLine.add(new RecyclerItemsData(connectivityDescript, connectivity));
 
-
         //Indicates whether network connectivity exists
         String connectStatusDescript = getString(R.string.wifi_connection_status);
         String connectStatus;
@@ -276,7 +259,6 @@ public class NetworkFragment extends BaseDetailedFragment {
             connectStatus = getString(R.string.wifi_not_connected);
         }
         recyclerViewLine.add(new RecyclerItemsData(connectStatusDescript, connectStatus));
-
 
 
         WifiManager wifiManager = (WifiManager)getActivity().getApplicationContext()

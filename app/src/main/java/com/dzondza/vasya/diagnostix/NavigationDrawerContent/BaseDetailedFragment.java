@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 /**
  * Base fragment, which contains similar information for all fragments
  * in drawerLayout, except InstalledAppsFragment
@@ -22,11 +21,11 @@ import java.util.List;
 public abstract class BaseDetailedFragment extends Fragment
         implements AdapterView.OnItemClickListener {
 
-    List<RecyclerItemsData> recyclerViewLine;
-    RecyclerAdapter adapter;
+    protected List<RecyclerItemsData> recyclerViewLine;
+    protected RecyclerAdapter adapter;
 
 
-    void initializeRecyclerView(View view) {
+    protected void initializeRecyclerView(View view) {
         recyclerViewLine = new ArrayList<>();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);

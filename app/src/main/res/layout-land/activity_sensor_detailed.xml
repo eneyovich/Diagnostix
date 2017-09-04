@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/MyCardViewStyle"
-    android:layout_marginTop="25dp"
-    android:layout_marginBottom="53dp"
-    app:cardCornerRadius="4dp"
-    app:cardElevation="5dp"
-    app:contentPadding="10dp">
+    android:layout_marginTop="?attr/actionBarSize"
+    android:layout_marginBottom="@dimen/cardview_sensor_margin_bottom"
+    app:cardCornerRadius="@dimen/cardview_radius_and_elevation"
+    app:cardElevation="@dimen/cardview_radius_and_elevation"
+    app:contentPadding="@dimen/cardview_sensor_content_padding">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
-            android:textSize="18sp"/>
+            android:textSize="@dimen/textview_sensor_text_size"/>
 
     </LinearLayout>
 

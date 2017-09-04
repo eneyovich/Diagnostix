@@ -35,7 +35,6 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
         //activates recyclerView
         initializeRecyclerView(view);
 
-
         //initializes mSensors' list
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         mSensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);

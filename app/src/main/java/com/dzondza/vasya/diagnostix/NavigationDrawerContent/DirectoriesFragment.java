@@ -62,7 +62,6 @@ public class DirectoriesFragment extends BaseDetailedFragment {
             recyclerViewLine.add(new RecyclerItemsData(documentsDescript, documents));
         }
 
-
         String downloadsDescript = getString(R.string.directory_downloads);
         String downloads = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_DOWNLOADS).toString();
