@@ -88,5 +88,6 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
         for (Sensor sensor : mSensors) {
             recyclerViewLine.add(new RecyclerItemsData(sensor.getName(), sensor.getVendor().concat("  --->")));
         }
+
     }
 }

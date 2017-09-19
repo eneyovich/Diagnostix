@@ -59,14 +59,11 @@ public class InstalledAppsFragment extends Fragment {
                 listView.setAdapter(new AppsListAdapter());
 
                 //shows applications' system information after touch on item
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        ApplicationInfo item = (ApplicationInfo) adapterView.getItemAtPosition(i);
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        intent.setData(Uri.parse("package:" + item.packageName));
-                        startActivity(intent);
-                    }
+                listView.setOnItemClickListener((adapterView, view, i, l) -> {
+                    ApplicationInfo item = (ApplicationInfo) adapterView.getItemAtPosition(i);
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                    intent.setData(Uri.parse("package:" + item.packageName));
+                    startActivity(intent);
                 });
                 super.onPostExecute(aVoid);
             }

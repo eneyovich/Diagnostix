@@ -47,20 +47,15 @@ public class SystemFragment extends BaseDetailedFragment {
     public void onResume() {
         super.onResume();
 
-        mCoreFrequencyRunnable = new Runnable() {
-            @Override
-            public void run() {
-
-                //refreshes each core's frequency
-                for (int i = 0; i < mCpuNumber; i++) {
-                    int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
-                            "/cpufreq/scaling_cur_freq") / 1000;
-                    recyclerViewLine.set(i + 2, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
-                            .concat(" MHz")));
-                    adapter.notifyDataSetChanged();
-                }
-                mHandler.postDelayed(this, 5);
+        mCoreFrequencyRunnable = () -> {
+            for (int i = 0; i < mCpuNumber; i++) {
+                int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
+                        "/cpufreq/scaling_cur_freq") / 1000;
+                recyclerViewLine.set(i + 2, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
+                        .concat(" MHz")));
+                adapter.notifyDataSetChanged();
             }
+            mHandler.postDelayed(mCoreFrequencyRunnable, 5);
         };
         mHandler.postDelayed(mCoreFrequencyRunnable, 100);
     }

@@ -65,7 +65,7 @@ public class DeviceFragment extends BaseDetailedFragment {
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-        if (position == 13) {
+        if (position >= 12) {
             try {
                 startActivity(new Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS));
             } catch (Exception e) {
