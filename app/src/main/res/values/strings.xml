@@ -43,7 +43,7 @@
     <string name="battery_status">Status</string>
     <string name="battery_health">Health</string>
     <string name="battery_technology">Technology</string>
-    <string name="battery_temperature_battery">Temperature</string>
+    <string name="battery_temperature">Temperature</string>
     <string name="battery_voltage">Voltage</string>
     <string name="battery_capacity">Capacity</string>
 
@@ -112,9 +112,9 @@
     <!-- Device strings -->
 
     <!--Device descriptions-->
-    <string name="device_model">Device Model</string>
+    <string name="device_dev_model">Device Model</string>
     <string name="device_manufacturer">Manufacturer</string>
-    <string name="device_model_detal">Model</string>
+    <string name="device_model">Model</string>
     <string name="device_brand">Brand</string>
     <string name="device_board">Board</string>
     <string name="device_device">Device</string>

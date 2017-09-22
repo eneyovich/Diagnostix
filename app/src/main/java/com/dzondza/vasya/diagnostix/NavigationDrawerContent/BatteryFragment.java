@@ -168,7 +168,8 @@ public class BatteryFragment extends BaseDetailedFragment {
         mBatteryIntent = getActivity().registerReceiver(null, intentFilter);
 
         if (Build.VERSION.SDK_INT >= 22) {
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_saver_settings), getString(R.string.open)));
+            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_saver_settings),
+                    getString(R.string.open)));
         }
 
         if (Build.VERSION.SDK_INT >= 23) {
@@ -176,36 +177,38 @@ public class BatteryFragment extends BaseDetailedFragment {
                     getString(R.string.open)));
         }
 
-        String powerSource = getString(R.string.battery_power_source);
-        recyclerViewLine.add(new RecyclerItemsData(powerSource, chargeSource()));
 
-        String levelDescription = getString(R.string.battery_level);
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_power_source),
+                chargeSource()));
+
+
         int level = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
         String levelSolution = String.valueOf(level).concat(" %");
-        recyclerViewLine.add(new RecyclerItemsData(levelDescription, levelSolution));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_level), levelSolution));
 
-        String batteryStatus = getString(R.string.battery_status);
-        recyclerViewLine.add(new RecyclerItemsData(batteryStatus, powerStatus()));
 
-        String tempDescription = getString(R.string.battery_temperature_battery);
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_status), powerStatus()));
+
+
         float temperature = mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) / 10 +
                 mBatteryIntent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, -1) % 10;
-        String tempSolution = String.valueOf(temperature).concat(" C");
-        recyclerViewLine.add(new RecyclerItemsData(tempDescription, tempSolution));
+        String batteryTemp = String.valueOf(temperature).concat(" C");
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_temperature), batteryTemp));
 
-        String batteryVoltage = getString(R.string.battery_voltage);
-        recyclerViewLine.add(new RecyclerItemsData(batteryVoltage, voltageLevel()));
 
-        String batteryHealth = getString(R.string.battery_health);
-        recyclerViewLine.add(new RecyclerItemsData(batteryHealth, healthStatus()));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_voltage), voltageLevel()));
 
-        String technologyDescription = getString(R.string.battery_technology);
-        String technologySolution = mBatteryIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
-        recyclerViewLine.add(new RecyclerItemsData(technologyDescription, technologySolution));
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_health), healthStatus()));
+
+
+        String technology = mBatteryIntent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_technology), technology));
+
 
         if (Build.VERSION.SDK_INT >= 21) {
-            String capacityDescription = getString(R.string.battery_capacity);
-            recyclerViewLine.add(new RecyclerItemsData(capacityDescription, getBatteryCapacity()));
+            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.battery_capacity),
+                    getBatteryCapacity()));
         }
     }
 }

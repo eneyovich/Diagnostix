@@ -137,28 +137,29 @@ public class SystemFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(vmLocation, System.getProperty("java.home",
                 getString(R.string.unknown))));
 
+
         String jniLibraries = getString(R.string.system_jni_libraries);
         recyclerViewLine.add(new RecyclerItemsData(jniLibraries, System.getProperty("java.library.path",
                 getString(R.string.unknown))));
 
 
-        String virtualMachineDescript = getString(R.string.system_virtual_machine);
         String virtualMachine = new StringBuilder(System.getProperty("java.vm.name", ""))
                 .append(" Vendor: ").append(System.getProperty("java.vm.vendor", ""))
                 .append(" Version: ").append(System.getProperty("java.vm.version", "")).toString();
-        recyclerViewLine.add(new RecyclerItemsData(virtualMachineDescript, virtualMachine));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_virtual_machine),
+                virtualMachine));
 
 
-        String vmLibrariesDescript = getString(R.string.system_vm_libraries);
         String vmLibraries = new StringBuilder(System.getProperty("java.specification.name", ""))
                 .append(" Vendor: ").append(System.getProperty("java.specification.vendor", ""))
                 .append(" Version: ").append(System.getProperty("java.specification.version", ""))
                 .toString();
-        recyclerViewLine.add(new RecyclerItemsData(vmLibrariesDescript, vmLibraries));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_vm_libraries), vmLibraries));
 
 
         String bootloader = getString(R.string.system_bootloader);
         recyclerViewLine.add(new RecyclerItemsData(bootloader, Build.BOOTLOADER));
+
 
         String host = getString(R.string.system_host);
         recyclerViewLine.add(new RecyclerItemsData(host, Build.HOST));

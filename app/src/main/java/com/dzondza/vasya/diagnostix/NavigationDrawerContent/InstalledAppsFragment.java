@@ -4,14 +4,12 @@ import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -39,22 +37,11 @@ public class InstalledAppsFragment extends Fragment {
         this.mInflater = inflater;
         mView = inflater.inflate(R.layout.fragment_installed_apps, container, false);
 
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected void onPreExecute() {
-                //getting installed apps' list
-                mPackageManager = getActivity().getPackageManager();
-                super.onPreExecute();
-            }
 
-            @Override
-            protected Void doInBackground(Void... voids) {
-                mAppsInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
+        mPackageManager = getActivity().getPackageManager();
+        new Thread(() -> {
+            mAppsInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
+            getActivity().runOnUiThread(() -> {
                 ListView listView = mView.findViewById(R.id.listview_instaled_apps);
                 listView.setAdapter(new AppsListAdapter());
 
@@ -65,9 +52,8 @@ public class InstalledAppsFragment extends Fragment {
                     intent.setData(Uri.parse("package:" + item.packageName));
                     startActivity(intent);
                 });
-                super.onPostExecute(aVoid);
-            }
-        }.execute();
+            });
+        }).start();
 
 
         //toolbar title

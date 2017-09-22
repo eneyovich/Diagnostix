@@ -75,35 +75,37 @@ public class DeviceFragment extends BaseDetailedFragment {
         super.onItemClick(adapterView, view, position, l);
     }
 
+
     @Override
     protected void recyclerListData() {
-        String model = getString(R.string.device_model);
-        recyclerViewLine.add(new RecyclerItemsData(model, new StringBuilder(Build.BRAND)
-                .append(" ").append(Build.MODEL).toString()));
 
-        String manufacturer = getString(R.string.device_manufacturer);
-        recyclerViewLine.add(new RecyclerItemsData(manufacturer, Build.MANUFACTURER));
+        String model = new StringBuilder(Build.BRAND).append(" ").append(Build.MODEL).toString();
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_dev_model), model));
 
-        String modelDetailed = getString(R.string.device_model_detal);
-        recyclerViewLine.add(new RecyclerItemsData(modelDetailed, Build.MODEL));
 
-        String brand = getString(R.string.device_brand);
-        recyclerViewLine.add(new RecyclerItemsData(brand, Build.BRAND));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_manufacturer),
+                Build.MANUFACTURER));
 
-        String board = getString(R.string.device_board);
-        recyclerViewLine.add(new RecyclerItemsData(board, Build.BOARD));
 
-        String device = getString(R.string.device_device);
-        recyclerViewLine.add(new RecyclerItemsData(device, Build.DEVICE));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_model), Build.MODEL));
 
-        String hardware = getString(R.string.device_hardware);
-        recyclerViewLine.add(new RecyclerItemsData(hardware, Build.HARDWARE));
 
-        String product = getString(R.string.device_product);
-        recyclerViewLine.add(new RecyclerItemsData(product, Build.PRODUCT));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_brand), Build.BRAND));
 
-        String serial = getString(R.string.device_serial);
-        recyclerViewLine.add(new RecyclerItemsData(serial, Build.SERIAL));
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_board), Build.BOARD));
+
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_device), Build.DEVICE));
+
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_hardware), Build.HARDWARE));
+
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_product), Build.PRODUCT));
+
+
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_serial), Build.SERIAL));
 
         //           Memory values           //
 
@@ -114,21 +116,23 @@ public class DeviceFragment extends BaseDetailedFragment {
         ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
         activityManager.getMemoryInfo(memoryInfo);
 
+
         //total ram memory
-        String ramTotal = getString(R.string.device_total_ram);
-        String ramTotalSolution = String.valueOf(memoryInfo.totalMem/1024/1024).concat(" Mb");
-        recyclerViewLine.add(new RecyclerItemsData(ramTotal, ramTotalSolution));
+        String ramTotal = String.valueOf(memoryInfo.totalMem/1024/1024).concat(" Mb");
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_total_ram), ramTotal));
+
 
         //available ram memory
-        String ramAvailableDescript = getString(R.string.device_available_ram);
         long ramPercent = Math.round(memoryInfo.availMem/(double)memoryInfo.totalMem*100);
         String ramAvailable = new StringBuilder().append(memoryInfo.availMem/1024/1024)
                 .append(" Mb (").append(ramPercent).append( " %)").toString();
-        recyclerViewLine.add(new RecyclerItemsData(ramAvailableDescript, ramAvailable));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_available_ram), ramAvailable));
+
 
         //Internal storage's free space in MB
         String freeInternalSpace = getString(R.string.device_internal_free_space);
         recyclerViewLine.add(new RecyclerItemsData(freeInternalSpace, freeInternalSpace().concat(" Mb")));
+
 
         //Internal storage's total space in MB
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {

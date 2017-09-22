@@ -69,10 +69,10 @@ public class DisplayFragment extends BaseDetailedFragment {
         int heightPixels = displayMetrics.heightPixels;
         int widthPixels = displayMetrics.widthPixels;
 
-        String resolutionDescript = getString(R.string.resolution);
+
         String resolution = new StringBuilder().append(widthPixels)
                 .append(" x ").append(heightPixels).toString();
-        recyclerViewLine.add(new RecyclerItemsData(resolutionDescript, resolution));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.resolution), resolution));
 
         // pixel density
         String pixelDensityDescript = getString(R.string.display_pixel_density);
@@ -89,11 +89,10 @@ public class DisplayFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(xdpiYdpiDescript, xdpiYdpi));
 
 
-        String technologyDescript = getString(R.string.display_technology);
         String renderer = GLES20.glGetString(GLES20.GL_RENDERER);
         String technology = new StringBuilder().append(renderer).append(" ")
                 .append(GLES20.GL_VERSION).toString();
-        recyclerViewLine.add(new RecyclerItemsData(technologyDescript, technology));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_technology), technology));
 
         //display's diagonal in inches
         double xInches = Math.pow(widthPixels/xdpi, 2);
@@ -104,7 +103,6 @@ public class DisplayFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(diagonal, String.valueOf(screenInches)));
 
         // default display's orientation
-        String orientationDescript = getString(R.string.display_orientation);
         String orientation;
         int rotation = display.getRotation();
         if (rotation == Surface.ROTATION_0 || rotation == Surface.ROTATION_180) {
@@ -112,16 +110,14 @@ public class DisplayFragment extends BaseDetailedFragment {
         } else {
             orientation = getString(R.string.display_orientation_landscape);
         }
-        recyclerViewLine.add(new RecyclerItemsData(orientationDescript, orientation));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_orientation), orientation));
 
         //display's name
-        String type = getString(R.string.display_type);
-        recyclerViewLine.add(new RecyclerItemsData(type, display.getName()));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_type), display.getName()));
 
         // display's rate in FPS
-        String rateDescript = getString(R.string.display_rate);
         String rate = String.valueOf(display.getRefreshRate()).concat(" FPS");
-        recyclerViewLine.add(new RecyclerItemsData(rateDescript, rate));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_rate), rate));
 
 
         ActivityManager activityManager = (ActivityManager) getActivity()

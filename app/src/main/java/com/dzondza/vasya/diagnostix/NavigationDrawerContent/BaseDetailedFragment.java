@@ -28,14 +28,12 @@ public abstract class BaseDetailedFragment extends Fragment implements AdapterVi
         recyclerViewLine = new ArrayList<>();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerAdapter(recyclerViewLine, this);
         recyclerView.setAdapter(adapter);
 
         //adds line between items in list
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
-                layoutManager.getOrientation()));
+                ((LinearLayoutManager)recyclerView.getLayoutManager()).getOrientation()));
 
         recyclerView.setHasFixedSize(true);
     }

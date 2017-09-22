@@ -47,21 +47,19 @@ public class DirectoriesFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(root, Environment.getRootDirectory().toString()));
 
 
-        String primaryStorageDescript = getString(R.string.directory_primary_storage);
         String primaryStorage = Environment.getExternalStorageDirectory().toString();
-        recyclerViewLine.add(new RecyclerItemsData(primaryStorageDescript, primaryStorage));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_primary_storage),
+                primaryStorage));
 
 
-        String DCIMDescript = getString(R.string.directory_dcim);
         String DCIM = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_DCIM).toString();
-        recyclerViewLine.add(new RecyclerItemsData(DCIMDescript, DCIM));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_dcim), DCIM));
 
 
-        String alarmsDescript = getString(R.string.directory_alarms);
         String alarms = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_ALARMS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(alarmsDescript, alarms));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_alarms), alarms));
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -71,22 +69,20 @@ public class DirectoriesFragment extends BaseDetailedFragment {
             recyclerViewLine.add(new RecyclerItemsData(documentsDescript, documents));
         }
 
-        String downloadsDescript = getString(R.string.directory_downloads);
+
         String downloads = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_DOWNLOADS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(downloadsDescript, downloads));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_downloads), downloads));
 
 
-        String moviesDescript = getString(R.string.directory_movies);
         String movies = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_MOVIES).toString();
-        recyclerViewLine.add(new RecyclerItemsData(moviesDescript, movies));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_movies), movies));
 
 
-        String musicDescript = getString(R.string.directory_music);
         String music = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_MUSIC).toString();
-        recyclerViewLine.add(new RecyclerItemsData(musicDescript, music));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_music), music));
 
 
         String notificationsDescript = getString(R.string.directory_notifications);
@@ -95,22 +91,19 @@ public class DirectoriesFragment extends BaseDetailedFragment {
         recyclerViewLine.add(new RecyclerItemsData(notificationsDescript, notifications));
 
 
-        String picturesDescript = getString(R.string.directory_pictures);
         String pictures = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_PICTURES).toString();
-        recyclerViewLine.add(new RecyclerItemsData(picturesDescript, pictures));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_pictures), pictures));
 
 
-        String podcastsDescript = getString(R.string.directory_podcasts);
         String podcasts = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_PODCASTS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(podcastsDescript, podcasts));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_podcasts), podcasts));
 
 
-        String ringtonesDescript = getString(R.string.directory_ringtones);
         String ringtones = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_RINGTONES).toString();
-        recyclerViewLine.add(new RecyclerItemsData(ringtonesDescript, ringtones));
+        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_ringtones), ringtones));
 
 
         String storageState = getString(R.string.directory_storage_state);
