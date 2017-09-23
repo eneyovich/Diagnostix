@@ -9,10 +9,19 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/view_drawerlayout_closed"
+    <FrameLayout
+        android:id="@+id/activity_main_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"/>
+
+    </FrameLayout>
+
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"

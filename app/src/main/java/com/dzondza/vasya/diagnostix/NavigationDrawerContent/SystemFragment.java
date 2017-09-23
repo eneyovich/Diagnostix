@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -51,7 +51,7 @@ public class SystemFragment extends BaseDetailedFragment {
             for (int i = 0; i < mCpuNumber; i++) {
                 int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
                         "/cpufreq/scaling_cur_freq") / 1000;
-                recyclerViewLine.set(i + 2, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
+                recyclerViewLine.set(i + 2, new RecyclerItemData("Core " + i, String.valueOf(coreFrequency)
                         .concat(" MHz")));
                 adapter.notifyDataSetChanged();
             }
@@ -88,7 +88,7 @@ public class SystemFragment extends BaseDetailedFragment {
     protected void recyclerListData() {
         Runtime runtime = Runtime.getRuntime();
         mCpuNumber = runtime.availableProcessors();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_cores), String.valueOf(mCpuNumber)));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.system_cores), String.valueOf(mCpuNumber)));
 
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -99,7 +99,7 @@ public class SystemFragment extends BaseDetailedFragment {
             }
         }
         mSupportedAbis = mSupportedAbis.replaceAll("null","");
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_instruction_set), mSupportedAbis));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.system_instruction_set), mSupportedAbis));
 
 
         List<Integer> maxCpuFreqList = new ArrayList<>(mCpuNumber);
@@ -108,7 +108,7 @@ public class SystemFragment extends BaseDetailedFragment {
             //gets each core frequency
             int coreFrequency = readIntegerFile("/sys/devices/system/cpu/cpu" + i +
                     "/cpufreq/scaling_cur_freq") / 1000;
-            recyclerViewLine.add(2 + i, new RecyclerItemsData("Core " + i, String.valueOf(coreFrequency)
+            recyclerViewLine.add(2 + i, new RecyclerItemData("Core " + i, String.valueOf(coreFrequency)
                     .concat(" MHz")));
 
 
@@ -119,34 +119,33 @@ public class SystemFragment extends BaseDetailedFragment {
         //Clock Speed
         String clockSpeedmin = Collections.min(maxCpuFreqList).toString();
         String clockSpeedmax = Collections.max(maxCpuFreqList).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_clock_speed), new StringBuilder(clockSpeedmin)
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.system_clock_speed), new StringBuilder(clockSpeedmin)
                 .append(" MHz - ").append(clockSpeedmax).append(" MHz").toString()));
 
 
         String osArchitecture = getString(R.string.system_os_architect);
-        recyclerViewLine.add(new RecyclerItemsData(osArchitecture, System.getProperty("os.arch")));
+        recyclerViewLine.add(new RecyclerItemData(osArchitecture, System.getProperty("os.arch")));
 
 
-        String kernelDescript = getString(R.string.system_kernel);
         String kernel = new StringBuilder(System.getProperty("os.name", "")).append(" ")
                 .append(System.getProperty("os.version", "")).toString();
-        recyclerViewLine.add(new RecyclerItemsData(kernelDescript, kernel));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.system_kernel), kernel));
 
 
         String vmLocation = getString(R.string.system_vm_location);
-        recyclerViewLine.add(new RecyclerItemsData(vmLocation, System.getProperty("java.home",
+        recyclerViewLine.add(new RecyclerItemData(vmLocation, System.getProperty("java.home",
                 getString(R.string.unknown))));
 
 
         String jniLibraries = getString(R.string.system_jni_libraries);
-        recyclerViewLine.add(new RecyclerItemsData(jniLibraries, System.getProperty("java.library.path",
+        recyclerViewLine.add(new RecyclerItemData(jniLibraries, System.getProperty("java.library.path",
                 getString(R.string.unknown))));
 
 
         String virtualMachine = new StringBuilder(System.getProperty("java.vm.name", ""))
                 .append(" Vendor: ").append(System.getProperty("java.vm.vendor", ""))
                 .append(" Version: ").append(System.getProperty("java.vm.version", "")).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_virtual_machine),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.system_virtual_machine),
                 virtualMachine));
 
 
@@ -154,14 +153,14 @@ public class SystemFragment extends BaseDetailedFragment {
                 .append(" Vendor: ").append(System.getProperty("java.specification.vendor", ""))
                 .append(" Version: ").append(System.getProperty("java.specification.version", ""))
                 .toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.system_vm_libraries), vmLibraries));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.system_vm_libraries), vmLibraries));
 
 
         String bootloader = getString(R.string.system_bootloader);
-        recyclerViewLine.add(new RecyclerItemsData(bootloader, Build.BOOTLOADER));
+        recyclerViewLine.add(new RecyclerItemData(bootloader, Build.BOOTLOADER));
 
 
         String host = getString(R.string.system_host);
-        recyclerViewLine.add(new RecyclerItemsData(host, Build.HOST));
+        recyclerViewLine.add(new RecyclerItemData(host, Build.HOST));
     }
 }

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 import java.io.File;
 
@@ -80,32 +80,32 @@ public class DeviceFragment extends BaseDetailedFragment {
     protected void recyclerListData() {
 
         String model = new StringBuilder(Build.BRAND).append(" ").append(Build.MODEL).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_dev_model), model));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_dev_model), model));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_manufacturer),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_manufacturer),
                 Build.MANUFACTURER));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_model), Build.MODEL));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_model), Build.MODEL));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_brand), Build.BRAND));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_brand), Build.BRAND));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_board), Build.BOARD));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_board), Build.BOARD));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_device), Build.DEVICE));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_device), Build.DEVICE));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_hardware), Build.HARDWARE));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_hardware), Build.HARDWARE));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_product), Build.PRODUCT));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_product), Build.PRODUCT));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_serial), Build.SERIAL));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_serial), Build.SERIAL));
 
         //           Memory values           //
 
@@ -119,19 +119,19 @@ public class DeviceFragment extends BaseDetailedFragment {
 
         //total ram memory
         String ramTotal = String.valueOf(memoryInfo.totalMem/1024/1024).concat(" Mb");
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_total_ram), ramTotal));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_total_ram), ramTotal));
 
 
         //available ram memory
         long ramPercent = Math.round(memoryInfo.availMem/(double)memoryInfo.totalMem*100);
         String ramAvailable = new StringBuilder().append(memoryInfo.availMem/1024/1024)
                 .append(" Mb (").append(ramPercent).append( " %)").toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.device_available_ram), ramAvailable));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.device_available_ram), ramAvailable));
 
 
         //Internal storage's free space in MB
         String freeInternalSpace = getString(R.string.device_internal_free_space);
-        recyclerViewLine.add(new RecyclerItemsData(freeInternalSpace, freeInternalSpace().concat(" Mb")));
+        recyclerViewLine.add(new RecyclerItemData(freeInternalSpace, freeInternalSpace().concat(" Mb")));
 
 
         //Internal storage's total space in MB
@@ -139,9 +139,9 @@ public class DeviceFragment extends BaseDetailedFragment {
             String totalInternalSpace = getString(R.string.device_internal_total_space);
             String totalInternalSpaceSolution = new StringBuilder()
                     .append(statFs.getTotalBytes()/1024/1024).append(" Mb").toString();
-            recyclerViewLine.add(new RecyclerItemsData(totalInternalSpace, totalInternalSpaceSolution));
+            recyclerViewLine.add(new RecyclerItemData(totalInternalSpace, totalInternalSpaceSolution));
         }
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.internal_storage_settings), getString(R.string.open)));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.internal_storage_settings), getString(R.string.open)));
     }
 }

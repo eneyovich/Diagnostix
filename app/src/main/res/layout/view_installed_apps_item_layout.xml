@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- shows item in applications' list initialized in InstalledAppsFragment -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/image_installed_apps"
+        android:layout_width="60dp"
+        android:layout_height="@dimen/image_view_installed_apps_height"
+        android:layout_marginEnd="@dimen/image_view_installed_apps_margin_end"
+        android:layout_gravity="center"
+        android:contentDescription="@string/string_image"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/installed_apps_item_height"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_installed_apps_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif-monospace"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/text_installed_apps_detailed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="cursive"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold|italic"/>
+
+    </LinearLayout>
+</LinearLayout>

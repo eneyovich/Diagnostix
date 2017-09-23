@@ -38,15 +38,18 @@ import com.dzondza.vasya.diagnostix.NavigationDrawerContent.DeviceFragment;
 public class MainScreenActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment mFragment;
     private DrawerLayout mDrawerLayout;
-    private FragmentTransaction mTransaction;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
+        navigationDrawer();
+    }
+
+
+    private void navigationDrawer() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -60,7 +63,6 @@ public class MainScreenActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         //sets text to navigationView header's textViews
         View header = navigationView.getHeaderView(0);
         TextView headerUpper = header.findViewById(R.id.text_header_upper);
@@ -68,11 +70,8 @@ public class MainScreenActivity extends AppCompatActivity
         TextView headerLower = header.findViewById(R.id.text_header_lower);
         headerLower.setText(Build.MODEL);
 
-
-        mTransaction = getSupportFragmentManager().beginTransaction();
-        mTransaction.add(R.id.activity_main_fragment_container, new DeviceFragment()).commit();
-
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_main_fragment_container,
+                new DeviceFragment()).commit();
         onNavigationItemSelected(navigationView.getMenu().findItem(R.id.nav_device));
     }
 
@@ -97,7 +96,6 @@ public class MainScreenActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         Intent intent;
         switch (item.getItemId()) {
             case R.id.menu_item_developer:
@@ -132,8 +130,8 @@ public class MainScreenActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
        // selects drawerLayout's item
+        Fragment mFragment = null;
         switch (item.getItemId()) {
             case R.id.nav_system:
                 mFragment = new SystemFragment();
@@ -173,7 +171,7 @@ public class MainScreenActivity extends AppCompatActivity
                 startActivity(intentShare);
         }
 
-        mTransaction = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction mTransaction = getSupportFragmentManager().beginTransaction();
         if (mFragment != null) {
             mTransaction.addToBackStack(null);
             mTransaction.replace(R.id.activity_main_fragment_container, mFragment).commit();

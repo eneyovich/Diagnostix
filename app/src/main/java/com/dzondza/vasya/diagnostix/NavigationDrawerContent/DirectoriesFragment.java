@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 
 
@@ -36,77 +36,77 @@ public class DirectoriesFragment extends BaseDetailedFragment {
     @Override
     protected void recyclerListData() {
         String data = getString(R.string.directory_data);
-        recyclerViewLine.add(new RecyclerItemsData(data,  Environment.getDataDirectory().toString()));
+        recyclerViewLine.add(new RecyclerItemData(data,  Environment.getDataDirectory().toString()));
 
 
         String cache = getString(R.string.directory_cache);
-        recyclerViewLine.add(new RecyclerItemsData(cache, Environment.getDownloadCacheDirectory().toString()));
+        recyclerViewLine.add(new RecyclerItemData(cache, Environment.getDownloadCacheDirectory().toString()));
 
 
         String root = getString(R.string.directory_root);
-        recyclerViewLine.add(new RecyclerItemsData(root, Environment.getRootDirectory().toString()));
+        recyclerViewLine.add(new RecyclerItemData(root, Environment.getRootDirectory().toString()));
 
 
         String primaryStorage = Environment.getExternalStorageDirectory().toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_primary_storage),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_primary_storage),
                 primaryStorage));
 
 
         String DCIM = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_DCIM).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_dcim), DCIM));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_dcim), DCIM));
 
 
         String alarms = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_ALARMS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_alarms), alarms));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_alarms), alarms));
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             String documentsDescript = getString(R.string.directory_documents);
             String documents = Environment.getExternalStoragePublicDirectory
                     (Environment.DIRECTORY_DOCUMENTS).toString();
-            recyclerViewLine.add(new RecyclerItemsData(documentsDescript, documents));
+            recyclerViewLine.add(new RecyclerItemData(documentsDescript, documents));
         }
 
 
         String downloads = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_DOWNLOADS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_downloads), downloads));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_downloads), downloads));
 
 
         String movies = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_MOVIES).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_movies), movies));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_movies), movies));
 
 
         String music = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_MUSIC).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_music), music));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_music), music));
 
 
         String notificationsDescript = getString(R.string.directory_notifications);
         String notifications = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_NOTIFICATIONS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(notificationsDescript, notifications));
+        recyclerViewLine.add(new RecyclerItemData(notificationsDescript, notifications));
 
 
         String pictures = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_PICTURES).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_pictures), pictures));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_pictures), pictures));
 
 
         String podcasts = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_PODCASTS).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_podcasts), podcasts));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_podcasts), podcasts));
 
 
         String ringtones = Environment.getExternalStoragePublicDirectory
                 (Environment.DIRECTORY_RINGTONES).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.directory_ringtones), ringtones));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.directory_ringtones), ringtones));
 
 
         String storageState = getString(R.string.directory_storage_state);
-        recyclerViewLine.add(new RecyclerItemsData(storageState, Environment.getExternalStorageState()));
+        recyclerViewLine.add(new RecyclerItemData(storageState, Environment.getExternalStorageState()));
     }
 }

@@ -57,7 +57,7 @@ public class SensorDetailedActivity extends AppCompatActivity implements SensorE
     public void onSensorChanged(SensorEvent sEvent) {
        Sensor sensor = sEvent.sensor;
 
-        //sets values from sensors to textviews
+        //sets values from sensors to textViews
         if (sensor.getType() == mSensorType) {
             switch (sensor.getType()) {
                 case Sensor.TYPE_ACCELEROMETER:

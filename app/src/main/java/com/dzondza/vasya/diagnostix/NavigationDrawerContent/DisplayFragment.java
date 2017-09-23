@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 
 
@@ -59,7 +59,7 @@ public class DisplayFragment extends BaseDetailedFragment {
         Display display = getActivity().getWindowManager().getDefaultDisplay();
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_screen_settings), getString(R.string.open)));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_screen_settings), getString(R.string.open)));
 
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -72,27 +72,28 @@ public class DisplayFragment extends BaseDetailedFragment {
 
         String resolution = new StringBuilder().append(widthPixels)
                 .append(" x ").append(heightPixels).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.resolution), resolution));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.resolution), resolution));
 
         // pixel density
-        String pixelDensityDescript = getString(R.string.display_pixel_density);
         String pixelDensity = String.valueOf(displayMetrics.densityDpi).concat(" dpi");
-        recyclerViewLine.add(new RecyclerItemsData(pixelDensityDescript, pixelDensity));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_pixel_density),
+                pixelDensity));
 
         // xdpi/ydpi
         double xdpi = displayMetrics.xdpi;
         double ydpi = displayMetrics.ydpi;
 
-        String xdpiYdpiDescript = getString(R.string.display_xdpi_ydpi);
+
         String xdpiYdpi = new StringBuilder().append((int)xdpi).append("/")
                 .append((int)ydpi).append(" dpi").toString();
-        recyclerViewLine.add(new RecyclerItemsData(xdpiYdpiDescript, xdpiYdpi));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_xdpi_ydpi), xdpiYdpi));
 
 
         String renderer = GLES20.glGetString(GLES20.GL_RENDERER);
         String technology = new StringBuilder().append(renderer).append(" ")
                 .append(GLES20.GL_VERSION).toString();
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_technology), technology));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_technology), technology));
+
 
         //display's diagonal in inches
         double xInches = Math.pow(widthPixels/xdpi, 2);
@@ -100,7 +101,8 @@ public class DisplayFragment extends BaseDetailedFragment {
         double inches = Math.sqrt(xInches + yInches);
         double screenInches = 0.01 * Math.round(100 * inches);
         String diagonal = getString(R.string.display_screen_diagonal);
-        recyclerViewLine.add(new RecyclerItemsData(diagonal, String.valueOf(screenInches)));
+        recyclerViewLine.add(new RecyclerItemData(diagonal, String.valueOf(screenInches)));
+
 
         // default display's orientation
         String orientation;
@@ -110,14 +112,16 @@ public class DisplayFragment extends BaseDetailedFragment {
         } else {
             orientation = getString(R.string.display_orientation_landscape);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_orientation), orientation));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_orientation), orientation));
+
 
         //display's name
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_type), display.getName()));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_type), display.getName()));
+
 
         // display's rate in FPS
         String rate = String.valueOf(display.getRefreshRate()).concat(" FPS");
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.display_rate), rate));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.display_rate), rate));
 
 
         ActivityManager activityManager = (ActivityManager) getActivity()
@@ -126,6 +130,6 @@ public class DisplayFragment extends BaseDetailedFragment {
 
 
         String openGLVersion = getString(R.string.display_opengl_version);
-        recyclerViewLine.add(new RecyclerItemsData(openGLVersion, configurationInfo.getGlEsVersion()));
+        recyclerViewLine.add(new RecyclerItemData(openGLVersion, configurationInfo.getGlEsVersion()));
     }
 }

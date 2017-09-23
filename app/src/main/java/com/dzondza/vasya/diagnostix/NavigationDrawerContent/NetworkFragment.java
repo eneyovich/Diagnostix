@@ -16,7 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Toast;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 
 
@@ -62,13 +62,13 @@ public class NetworkFragment extends BaseDetailedFragment {
         super.onItemClick(adapterView, view, position, l);
     }
 
+    @SuppressLint("SwitchIntDef")
     @Override
     protected void recyclerListData() {
         TelephonyManager telephonyManager = (TelephonyManager)
                 getActivity().getSystemService(Context.TELEPHONY_SERVICE);
 
         //returns constant that represents the current state of all phone calls
-        String callStateDescript = getString(R.string.network_device_call_state);
         String callState;
         switch (telephonyManager.getCallState()) {
             case TelephonyManager.CALL_STATE_RINGING :
@@ -83,7 +83,8 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 callState = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(callStateDescript, callState));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_device_call_state), callState));
+
 
         //type of activity on a data connection (cellular)
         String connectActivityDescript = getString(R.string.network_data_connection_activity);
@@ -107,7 +108,8 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 connectActivity = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(connectActivityDescript, connectActivity));
+        recyclerViewLine.add(new RecyclerItemData(connectActivityDescript, connectActivity));
+
 
         //data connection state (cellular).
         String connectStateDescript = getString(R.string.network_connection_state);
@@ -128,20 +130,21 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 connectState = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(connectStateDescript, connectState));
+        recyclerViewLine.add(new RecyclerItemData(connectStateDescript, connectState));
+
 
         //ISO country code
         String isoCode = telephonyManager.getNetworkCountryIso();
         view.setTag(isoCode);
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.network_iso_country_code), isoCode));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_iso_country_code), isoCode));
 
         //alphabetic name of current registered operator.
         String operatorName = getString(R.string.network_operator_name);
-        recyclerViewLine.add(new RecyclerItemsData(operatorName, telephonyManager.getNetworkOperatorName()));
+        recyclerViewLine.add(new RecyclerItemData(operatorName, telephonyManager.getNetworkOperatorName()));
 
         //numeric name (MCC+MNC) of current registered operator.
         String operatorCode = getString(R.string.network_operator_numeric_code);
-        recyclerViewLine.add(new RecyclerItemsData(operatorCode, telephonyManager.getNetworkOperator()));
+        recyclerViewLine.add(new RecyclerItemData(operatorCode, telephonyManager.getNetworkOperator()));
 
         //NETWORK_TYPE_xxxx for current data connection.
         String networkTypeSolution;
@@ -171,14 +174,16 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 networkTypeSolution = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.network_type), networkTypeSolution));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_type), networkTypeSolution));
+
 
         //Returns the number of available phones
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             String simSlots = String.valueOf(telephonyManager.getPhoneCount());
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.network_sim_slots), simSlots));
+            recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_sim_slots), simSlots));
         }
+
 
         //device's radio type
         String radio;
@@ -198,11 +203,13 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 radio = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.network_type_radio), radio));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_type_radio), radio));
+
 
         //ISO country code equivalent for the SIM provider's country code.
         String providersCode = getString(R.string.network_sim_providers_country_code);
-        recyclerViewLine.add(new RecyclerItemsData(providersCode, telephonyManager.getSimCountryIso()));
+        recyclerViewLine.add(new RecyclerItemData(providersCode, telephonyManager.getSimCountryIso()));
+
 
         //default SIM card's state
         String simState;
@@ -237,7 +244,7 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 simState = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.network_sim_state), simState));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_sim_state), simState));
 
 
         //true if device is considered roaming on current network
@@ -247,7 +254,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         } else {
             roaming = getString(R.string.no);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.network_roaming), roaming));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.network_roaming), roaming));
 
 
         ConnectivityManager connectivityManager = (ConnectivityManager) getActivity()
@@ -257,11 +264,11 @@ public class NetworkFragment extends BaseDetailedFragment {
 
         //wifi type of network
         String networkType = getString(R.string.wifi_network_type);
-        recyclerViewLine.add(new RecyclerItemsData(networkType, networkInfo.getTypeName()));
+        recyclerViewLine.add(new RecyclerItemData(networkType, networkInfo.getTypeName()));
 
         //wifi state information
         String networkStateInform = getString(R.string.wifi_network_state_information);
-        recyclerViewLine.add(new RecyclerItemsData(networkStateInform, networkInfo.getExtraInfo()));
+        recyclerViewLine.add(new RecyclerItemData(networkStateInform, networkInfo.getExtraInfo()));
 
         //Indicates whether network connectivity is possible
         String connectivity;
@@ -270,7 +277,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         } else {
             connectivity = getString(R.string.unavailable);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.wifi_connectivity), connectivity));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.wifi_connectivity), connectivity));
 
 
         //Indicates whether network connectivity exists
@@ -281,7 +288,7 @@ public class NetworkFragment extends BaseDetailedFragment {
         } else {
             connectStatus = getString(R.string.wifi_not_connected);
         }
-        recyclerViewLine.add(new RecyclerItemsData(connectStatusDescript, connectStatus));
+        recyclerViewLine.add(new RecyclerItemData(connectStatusDescript, connectStatus));
 
 
         WifiManager wifiManager = (WifiManager)getActivity().getApplicationContext()
@@ -290,44 +297,44 @@ public class NetworkFragment extends BaseDetailedFragment {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
         String ssid = getString(R.string.wifi_SSID);
-        recyclerViewLine.add(new RecyclerItemsData(ssid, wifiInfo.getSSID()));
+        recyclerViewLine.add(new RecyclerItemData(ssid, wifiInfo.getSSID()));
 
 
         String bssid = getString(R.string.wifi_BSSID);
-        recyclerViewLine.add(new RecyclerItemsData(bssid, wifiInfo.getBSSID()));
+        recyclerViewLine.add(new RecyclerItemData(bssid, wifiInfo.getBSSID()));
 
 
         String ipAddress  = getString(R.string.wifi_ip_address);
-        recyclerViewLine.add(new RecyclerItemsData(ipAddress, String.valueOf(wifiInfo.getIpAddress())));
+        recyclerViewLine.add(new RecyclerItemData(ipAddress, String.valueOf(wifiInfo.getIpAddress())));
 
 
         String linkSpeed = String.valueOf(wifiInfo.getLinkSpeed()).concat(" Mbps");
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.wifi_link_speed), linkSpeed));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.wifi_link_speed), linkSpeed));
 
 
         String macAddress = getString(R.string.wifi_mac_address);
-        recyclerViewLine.add(new RecyclerItemsData(macAddress, wifiInfo.getMacAddress()));
+        recyclerViewLine.add(new RecyclerItemData(macAddress, wifiInfo.getMacAddress()));
 
 
         String networkId = getString(R.string.wifi_network_id);
-        recyclerViewLine.add(new RecyclerItemsData(networkId, String.valueOf(wifiInfo.getNetworkId())));
+        recyclerViewLine.add(new RecyclerItemData(networkId, String.valueOf(wifiInfo.getNetworkId())));
 
 
         String signalStrength = getString(R.string.wifi_signal_strength);
         String signalStrengthSolution = String.valueOf(wifiInfo.getRssi()).concat(" dBm");
-        recyclerViewLine.add(new RecyclerItemsData(signalStrength, signalStrengthSolution));
+        recyclerViewLine.add(new RecyclerItemData(signalStrength, signalStrengthSolution));
 
 
         String dns1 = String.valueOf(wifiManager.getDhcpInfo().dns1);
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.wifi_dns1), dns1));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.wifi_dns1), dns1));
 
 
         String dns2 = String.valueOf(wifiManager.getDhcpInfo().dns2);
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.wifi_dns2), dns2));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.wifi_dns2), dns2));
 
 
         String netmask = String.valueOf(wifiManager.getDhcpInfo().netmask);
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.wifi_netmask), netmask));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.wifi_netmask), netmask));
 
 
         String wifiState;
@@ -341,6 +348,6 @@ public class NetworkFragment extends BaseDetailedFragment {
             default:
                 wifiState = getString(R.string.unknown);
         }
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.wifi_state), wifiState));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.wifi_state), wifiState));
     }
 }

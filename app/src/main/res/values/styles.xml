@@ -19,13 +19,13 @@
     <style name="MyCardViewStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginTop">@dimen/my_cardview_style_margin_top</item>
-        <item name="android:layout_marginRight">@dimen/my_cardview_style_margin_left_right</item>
-        <item name="android:layout_marginLeft">@dimen/my_cardview_style_margin_left_right</item>
-        <item name="android:layout_marginBottom">@dimen/my_cardview_style_margin_bottom</item>
+        <item name="android:layout_marginTop">@dimen/my_card_view_style_margin_top</item>
+        <item name="android:layout_marginRight">@dimen/my_card_view_style_margin_left_right</item>
+        <item name="android:layout_marginLeft">@dimen/my_card_view_style_margin_left_right</item>
+        <item name="android:layout_marginBottom">@dimen/my_card_view_style_margin_bottom</item>
     </style>
 
-    <style name="MyRecyclerItemsTextviews">
+    <style name="MyRecyclerItemsTextView">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:gravity">center</item>

@@ -14,13 +14,13 @@ fragments from drawerLayout except InstalledAppsFragment -->
         android:fontFamily="serif-monospace"
         android:textColor="@android:color/black"
         android:textStyle="bold"
-        style="@style/MyRecyclerItemsTextviews"/>
+        style="@style/MyRecyclerItemsTextView"/>
 
     <TextView
         android:id="@+id/text_recycler_item_solution"
         android:fontFamily="cursive"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold|italic"
-        style="@style/MyRecyclerItemsTextviews"/>
+        style="@style/MyRecyclerItemsTextView"/>
 
 </LinearLayout>

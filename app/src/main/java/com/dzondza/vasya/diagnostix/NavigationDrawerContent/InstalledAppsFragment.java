@@ -6,119 +6,75 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.AdapterView;
 import com.dzondza.vasya.diagnostix.R;
-import java.util.List;
+import com.dzondza.vasya.diagnostix.RecyclerAdapterInstalledApps;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 
+import java.util.List;
 
 /**
  * Installed applications on phone
  */
 
-public class InstalledAppsFragment extends Fragment {
-
-    private PackageManager mPackageManager;
+public class InstalledAppsFragment extends BaseDetailedFragment {
     private List<ApplicationInfo> mAppsInfoList;
 
-    private LayoutInflater mInflater;
-    private View mView;
-
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragments_recyclerview, container, false);
 
-        this.mInflater = inflater;
-        mView = inflater.inflate(R.layout.fragment_installed_apps, container, false);
+        activateRecycler(view);
 
-
-        mPackageManager = getActivity().getPackageManager();
-        new Thread(() -> {
-            mAppsInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
-            getActivity().runOnUiThread(() -> {
-                ListView listView = mView.findViewById(R.id.listview_instaled_apps);
-                listView.setAdapter(new AppsListAdapter());
-
-                //shows applications' system information after touch on item
-                listView.setOnItemClickListener((adapterView, view, i, l) -> {
-                    ApplicationInfo item = (ApplicationInfo) adapterView.getItemAtPosition(i);
-                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                    intent.setData(Uri.parse("package:" + item.packageName));
-                    startActivity(intent);
-                });
-            });
-        }).start();
-
+        recyclerListData();
 
         //toolbar title
         getActivity().setTitle(R.string.drawer_applications);
 
-        return mView;
+        return view;
     }
 
 
-    //adapter for listView to represent list of apps
-    private class AppsListAdapter extends BaseAdapter {
+    private void activateRecycler(View view) {
 
-        @Override
-        public int getCount() {
-            return mAppsInfoList.size();
-        }
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        recyclerView.setAdapter(new RecyclerAdapterInstalledApps(recyclerViewLine, this));
 
-        @Override
-        public ApplicationInfo getItem(int position) {
-            return mAppsInfoList.get(position);
-        }
+        //adds line between items in list
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
+                ((LinearLayoutManager)recyclerView.getLayoutManager()).getOrientation()));
 
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int i, View v, ViewGroup viewGroup) {
-            ViewHolder viewHolder;
-
-            if (v == null) {
-                viewHolder = new ViewHolder();
-                mView = mInflater.inflate(R.layout.fragment_installed_apps, viewGroup, false);
+        recyclerView.setHasFixedSize(true);
+    }
 
 
-                viewHolder.appIconImageView = (ImageView) mView
-                        .findViewById(R.id.image_installed_apps);
-                viewHolder.appNameTextView = (TextView) mView
-                        .findViewById(R.id.text_installed_apps_descript);
-                viewHolder.appSourceDirTextView = (TextView) mView
-                        .findViewById(R.id.text_installed_apps_detailed);
+    protected void recyclerListData() {
+        PackageManager mPackageManager = getActivity().getPackageManager();
+        mAppsInfoList = mPackageManager.getInstalledApplications(PackageManager.GET_META_DATA);
 
-                mView.setTag(viewHolder);
-
-            } else {
-                mView = v;
-                viewHolder = (ViewHolder) mView.getTag();
-            }
-
-            final ApplicationInfo appInfo = mAppsInfoList.get(i);
-
-            viewHolder.appIconImageView.setImageDrawable(appInfo.loadIcon(mPackageManager));
-            viewHolder.appNameTextView.setText(appInfo.loadLabel(mPackageManager).toString());
-            viewHolder.appSourceDirTextView.setText(appInfo.sourceDir);
-
-
-            return mView;
+        for (ApplicationInfo appInfo: mAppsInfoList) {
+            recyclerViewLine.add(new RecyclerItemData(appInfo.loadIcon(mPackageManager),
+                    appInfo.loadLabel(mPackageManager).toString(), appInfo.sourceDir));
         }
     }
 
 
-    private static class ViewHolder {
-        private ImageView appIconImageView;
-        private TextView appNameTextView;
-        private TextView appSourceDirTextView;
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (i >= 0 && i < mAppsInfoList.size()) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + mAppsInfoList.get(i).packageName));
+            startActivity(intent);
+        }
+        super.onItemClick(adapterView, view, i, l);
     }
 }

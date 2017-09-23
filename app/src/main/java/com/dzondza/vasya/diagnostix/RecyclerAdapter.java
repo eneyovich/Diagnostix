@@ -9,25 +9,25 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * RecyclerView.Adapter for fragments in drawerLayout menu
+ * RecyclerView.Adapter for fragments in drawerLayout menu, except InstalledAppsFragment
  */
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<RecyclerItemsData> mRecyclerItemsDataList;
+    private List<RecyclerItemData> mRecyclerItemDataList;
     private AdapterView.OnItemClickListener mOnItemClickListener;
 
 
-    public RecyclerAdapter(List<RecyclerItemsData> recyclerItemsDataList,
+    public RecyclerAdapter(List<RecyclerItemData> recyclerItemDataList,
                            AdapterView.OnItemClickListener onItemClickListener) {
-        this.mRecyclerItemsDataList = recyclerItemsDataList;
+        this.mRecyclerItemDataList = recyclerItemDataList;
         this.mOnItemClickListener = onItemClickListener;
     }
 
 
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_recycler_items_layout,
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_recycler_item_layout,
                 parent, false);
 
         return new RecyclerAdapter.ViewHolder(view);
@@ -35,13 +35,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        holder.mDescriptionTextView.setText(mRecyclerItemsDataList.get(position).mDescription);
-        holder.mSolutionTextView.setText(mRecyclerItemsDataList.get(position).mSolution);
+        holder.mDescriptionTextView.setText(mRecyclerItemDataList.get(position).mDescription);
+        holder.mSolutionTextView.setText(mRecyclerItemDataList.get(position).mSolution);
     }
 
     @Override
     public int getItemCount() {
-        return mRecyclerItemsDataList.size();
+        return mRecyclerItemDataList.size();
     }
 
 

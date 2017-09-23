@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class SensorsFragment extends BaseDetailedFragment implements SensorEvent
 
         registerAllSensors(this, mSensors, mSensorManager);
         for (Sensor sensor : mSensors) {
-            recyclerViewLine.add(new RecyclerItemsData(sensor.getName(), sensor.getVendor().concat("  --->")));
+            recyclerViewLine.add(new RecyclerItemData(sensor.getName(), sensor.getVendor().concat("  --->")));
         }
 
     }

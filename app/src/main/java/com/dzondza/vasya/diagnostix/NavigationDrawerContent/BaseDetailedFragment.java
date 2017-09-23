@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import com.dzondza.vasya.diagnostix.R;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.RecyclerAdapter;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +15,16 @@ import java.util.List;
 
 /**
  * Base fragment, which contains similar information for all fragments
- * in drawerLayout, except InstalledAppsFragment
+ * in drawerLayout
  */
 
 public abstract class BaseDetailedFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-    protected List<RecyclerItemsData> recyclerViewLine;
+    protected List<RecyclerItemData> recyclerViewLine = new ArrayList<>();
     protected RecyclerAdapter adapter;
 
 
     protected void initializeRecyclerView(View view) {
-        recyclerViewLine = new ArrayList<>();
 
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         adapter = new RecyclerAdapter(recyclerViewLine, this);

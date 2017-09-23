@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.dzondza.vasya.diagnostix.RecyclerItemsData;
+import com.dzondza.vasya.diagnostix.RecyclerItemData;
 import com.dzondza.vasya.diagnostix.R;
 
 /**
@@ -49,46 +49,46 @@ public class AndroidFragment extends BaseDetailedFragment {
             default: versionName = getString(R.string.jelly_bean);
         }
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_version_name),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_version_name),
                 versionName));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_version_code),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_version_code),
                 Build.VERSION.RELEASE));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_api_level),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_api_level),
                 String.valueOf(Build.VERSION.SDK_INT)));
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_security_patch_level),
+            recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_security_patch_level),
                     Build.VERSION.SECURITY_PATCH));
         }
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_baseband),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_baseband),
                 Build.getRadioVersion()));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_build_id), Build.ID));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_build_id), Build.ID));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_codename),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_codename),
                 Build.VERSION.CODENAME));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_fingerprint),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_fingerprint),
                 Build.FINGERPRINT));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_incremental),
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_incremental),
                 Build.VERSION.INCREMENTAL));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_tags), Build.TAGS));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_tags), Build.TAGS));
 
 
-        recyclerViewLine.add(new RecyclerItemsData(getString(R.string.android_type), Build.TYPE));
+        recyclerViewLine.add(new RecyclerItemData(getString(R.string.android_type), Build.TYPE));
     }
 }
