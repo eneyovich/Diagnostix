@@ -35,8 +35,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        holder.mDescriptionTextView.setText(mRecyclerItemDataList.get(position).mDescription);
-        holder.mSolutionTextView.setText(mRecyclerItemDataList.get(position).mSolution);
+        holder.mDescriptionTextView.setText(mRecyclerItemDataList.get(position).getDescription());
+        holder.mSolutionTextView.setText(mRecyclerItemDataList.get(position).getSolution());
     }
 
     @Override

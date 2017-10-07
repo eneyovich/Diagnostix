@@ -33,9 +33,9 @@ public class RecyclerAdapterInstalledApps extends RecyclerView.Adapter<RecyclerA
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.appImage.setImageDrawable(mRecyclerItemDataList.get(position).mAppImage);
-        holder.appTitleText.setText(mRecyclerItemDataList.get(position).mDescription);
-        holder.appDetailsText.setText(mRecyclerItemDataList.get(position).mSolution);
+        holder.appImage.setImageDrawable(mRecyclerItemDataList.get(position).getAppImage());
+        holder.appTitleText.setText(mRecyclerItemDataList.get(position).getDescription());
+        holder.appDetailsText.setText(mRecyclerItemDataList.get(position).getSolution());
     }
 
     @Override

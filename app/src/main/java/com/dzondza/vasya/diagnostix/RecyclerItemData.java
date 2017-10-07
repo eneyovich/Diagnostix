@@ -7,9 +7,9 @@ import android.graphics.drawable.Drawable;
  */
 
 public class RecyclerItemData {
-    Drawable mAppImage;
-    String mDescription;
-    String mSolution;
+    private Drawable mAppImage;
+    private String mDescription;
+    private String mSolution;
 
     //constructor to make list, using RecyclerAdapter
     public RecyclerItemData(String description, String solution) {
@@ -22,5 +22,18 @@ public class RecyclerItemData {
         this.mAppImage = appImage;
         this.mDescription = description;
         this.mSolution = solution;
+    }
+
+
+    public Drawable getAppImage() {
+        return mAppImage;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public String getSolution() {
+        return mSolution;
     }
 }
