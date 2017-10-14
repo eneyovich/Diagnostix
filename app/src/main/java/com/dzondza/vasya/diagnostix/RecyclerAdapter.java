@@ -46,12 +46,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView mDescriptionTextView;
         TextView mSolutionTextView;
 
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             mDescriptionTextView = itemView.findViewById(R.id.text_recycler_item_description);
             mSolutionTextView = itemView.findViewById(R.id.text_recycler_item_solution);

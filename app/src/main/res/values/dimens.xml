@@ -10,7 +10,7 @@
     <dimen name="image_view_installed_apps_height">60dp</dimen>
     <dimen name="image_view_installed_apps_margin_end">10dp</dimen>
     <dimen name="installed_apps_item_height">80dp</dimen>
-    <!--fragment_recyclerview-->
+    <!--fragment_recycler_view-->
     <dimen name="card_view_recycler_view_content_padding">10dp</dimen>
     <!--view_navigation_header-->
     <dimen name="navigation_header_height">190dp</dimen>
